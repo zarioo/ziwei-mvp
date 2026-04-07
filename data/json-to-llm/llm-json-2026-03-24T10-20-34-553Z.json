@@ -1,0 +1,952 @@
+{
+  "metadata": {
+    "gender": "阳女",
+    "lunar_birth_date": "二〇〇〇年七月廿七",
+    "birth_year_stem": "庚",
+    "five_elements_bureau": "土五局",
+    "life_master": "禄存",
+    "body_master": "文昌"
+  },
+  "static_palaces": [
+    {
+      "index": 0,
+      "name": "官禄",
+      "is_body_palace": false,
+      "earthly_branch": "寅",
+      "heavenly_stem": "戊",
+      "major_stars": [
+        "贪狼(平)[自化禄]"
+      ],
+      "minor_stars": [
+        "文曲(平)",
+        "天马"
+      ],
+      "mini_stars": [
+        "解神",
+        "八座",
+        "天才",
+        "天巫",
+        "天厨",
+        "阴煞",
+        "天哭"
+      ],
+      "changsheng_phase": [
+        "病"
+      ],
+      "misc_gods": {
+        "doctor_12": "飞廉",
+        "year_12": "吊客",
+        "general_12": "岁驿"
+      },
+      "relationships": {
+        "oppositeIndex": 6,
+        "wealthTrineIndex": 8,
+        "careerTrineIndex": 4
+      }
+    },
+    {
+      "index": 1,
+      "name": "交友",
+      "is_body_palace": false,
+      "earthly_branch": "卯",
+      "heavenly_stem": "己",
+      "major_stars": [
+        "天机(旺)[对宫化入禄]",
+        "巨门(庙)"
+      ],
+      "minor_stars": [],
+      "mini_stars": [
+        "天贵",
+        "天刑",
+        "天伤"
+      ],
+      "changsheng_phase": [
+        "衰"
+      ],
+      "misc_gods": {
+        "doctor_12": "奏书",
+        "year_12": "病符",
+        "general_12": "息神"
+      },
+      "relationships": {
+        "oppositeIndex": 7,
+        "wealthTrineIndex": 9,
+        "careerTrineIndex": 5
+      }
+    },
+    {
+      "index": 2,
+      "name": "迁移",
+      "is_body_palace": false,
+      "earthly_branch": "辰",
+      "heavenly_stem": "庚",
+      "major_stars": [
+        "紫微(得)",
+        "天相(得)"
+      ],
+      "minor_stars": [
+        "右弼"
+      ],
+      "mini_stars": [
+        "台辅",
+        "华盖"
+      ],
+      "changsheng_phase": [
+        "帝旺"
+      ],
+      "misc_gods": {
+        "doctor_12": "将军",
+        "year_12": "岁建",
+        "general_12": "华盖"
+      },
+      "relationships": {
+        "oppositeIndex": 8,
+        "wealthTrineIndex": 10,
+        "careerTrineIndex": 6
+      }
+    },
+    {
+      "index": 3,
+      "name": "疾厄",
+      "is_body_palace": false,
+      "earthly_branch": "巳",
+      "heavenly_stem": "辛",
+      "major_stars": [
+        "天梁(陷)"
+      ],
+      "minor_stars": [],
+      "mini_stars": [
+        "天喜",
+        "天空",
+        "孤辰",
+        "天使"
+      ],
+      "changsheng_phase": [
+        "临官"
+      ],
+      "misc_gods": {
+        "doctor_12": "小耗",
+        "year_12": "晦气",
+        "general_12": "劫煞"
+      },
+      "relationships": {
+        "oppositeIndex": 9,
+        "wealthTrineIndex": 11,
+        "careerTrineIndex": 7
+      }
+    },
+    {
+      "index": 4,
+      "name": "财帛",
+      "is_body_palace": true,
+      "earthly_branch": "午",
+      "heavenly_stem": "壬",
+      "major_stars": [
+        "七杀(旺)"
+      ],
+      "minor_stars": [],
+      "mini_stars": [
+        "凤阁",
+        "天福",
+        "截路",
+        "蜚廉",
+        "年解"
+      ],
+      "changsheng_phase": [
+        "冠带"
+      ],
+      "misc_gods": {
+        "doctor_12": "青龙",
+        "year_12": "丧门",
+        "general_12": "灾煞"
+      },
+      "relationships": {
+        "oppositeIndex": 10,
+        "wealthTrineIndex": 0,
+        "careerTrineIndex": 8
+      }
+    },
+    {
+      "index": 5,
+      "name": "子女",
+      "is_body_palace": false,
+      "earthly_branch": "未",
+      "heavenly_stem": "癸",
+      "major_stars": [
+        "无(空宫）"
+      ],
+      "minor_stars": [
+        "天钺",
+        "陀罗(庙)"
+      ],
+      "mini_stars": [
+        "天姚",
+        "空亡"
+      ],
+      "changsheng_phase": [
+        "沐浴"
+      ],
+      "misc_gods": {
+        "doctor_12": "力士",
+        "year_12": "贯索",
+        "general_12": "天煞"
+      },
+      "relationships": {
+        "oppositeIndex": 11,
+        "wealthTrineIndex": 1,
+        "careerTrineIndex": 9
+      }
+    },
+    {
+      "index": 6,
+      "name": "夫妻",
+      "is_body_palace": false,
+      "earthly_branch": "申",
+      "heavenly_stem": "甲",
+      "major_stars": [
+        "廉贞(庙)[自化禄]"
+      ],
+      "minor_stars": [
+        "禄存",
+        "铃星(陷)"
+      ],
+      "mini_stars": [
+        "龙池",
+        "旬空"
+      ],
+      "changsheng_phase": [
+        "长生"
+      ],
+      "misc_gods": {
+        "doctor_12": "博士",
+        "year_12": "官符",
+        "general_12": "指背"
+      },
+      "relationships": {
+        "oppositeIndex": 0,
+        "wealthTrineIndex": 2,
+        "careerTrineIndex": 10
+      }
+    },
+    {
+      "index": 7,
+      "name": "兄弟",
+      "is_body_palace": false,
+      "earthly_branch": "酉",
+      "heavenly_stem": "乙",
+      "major_stars": [
+        "无(空宫）"
+      ],
+      "minor_stars": [
+        "地劫",
+        "擎羊(陷)"
+      ],
+      "mini_stars": [
+        "咸池",
+        "月德"
+      ],
+      "changsheng_phase": [
+        "养"
+      ],
+      "misc_gods": {
+        "doctor_12": "官府",
+        "year_12": "小耗",
+        "general_12": "咸池"
+      },
+      "relationships": {
+        "oppositeIndex": 1,
+        "wealthTrineIndex": 3,
+        "careerTrineIndex": 11
+      }
+    },
+    {
+      "index": 8,
+      "name": "命宫",
+      "is_body_palace": false,
+      "earthly_branch": "戌",
+      "heavenly_stem": "丙",
+      "major_stars": [
+        "破军(旺)"
+      ],
+      "minor_stars": [
+        "左辅"
+      ],
+      "mini_stars": [
+        "天寿",
+        "天虚"
+      ],
+      "changsheng_phase": [
+        "胎"
+      ],
+      "misc_gods": {
+        "doctor_12": "伏兵",
+        "year_12": "大耗",
+        "general_12": "月煞"
+      },
+      "relationships": {
+        "oppositeIndex": 2,
+        "wealthTrineIndex": 4,
+        "careerTrineIndex": 0
+      }
+    },
+    {
+      "index": 9,
+      "name": "父母",
+      "is_body_palace": false,
+      "earthly_branch": "亥",
+      "heavenly_stem": "丁",
+      "major_stars": [
+        "天同(庙)-[生年忌][自化权]"
+      ],
+      "minor_stars": [],
+      "mini_stars": [
+        "红鸾",
+        "天官",
+        "天月"
+      ],
+      "changsheng_phase": [
+        "绝"
+      ],
+      "misc_gods": {
+        "doctor_12": "大耗",
+        "year_12": "龙德",
+        "general_12": "亡神"
+      },
+      "relationships": {
+        "oppositeIndex": 3,
+        "wealthTrineIndex": 5,
+        "careerTrineIndex": 1
+      }
+    },
+    {
+      "index": 10,
+      "name": "福德",
+      "is_body_palace": false,
+      "earthly_branch": "子",
+      "heavenly_stem": "戊",
+      "major_stars": [
+        "武曲(旺)-[生年权][对宫化入忌]",
+        "天府(庙)"
+      ],
+      "minor_stars": [
+        "文昌(得)",
+        "火星(陷)"
+      ],
+      "mini_stars": [
+        "三台",
+        "封诰"
+      ],
+      "changsheng_phase": [
+        "墓"
+      ],
+      "misc_gods": {
+        "doctor_12": "病符",
+        "year_12": "白虎",
+        "general_12": "将星"
+      },
+      "relationships": {
+        "oppositeIndex": 4,
+        "wealthTrineIndex": 6,
+        "careerTrineIndex": 2
+      }
+    },
+    {
+      "index": 11,
+      "name": "田宅",
+      "is_body_palace": false,
+      "earthly_branch": "丑",
+      "heavenly_stem": "己",
+      "major_stars": [
+        "太阳(不)-[生年禄]",
+        "太阴(庙)-[生年科][对宫化入科]"
+      ],
+      "minor_stars": [
+        "天魁",
+        "地空"
+      ],
+      "mini_stars": [
+        "恩光",
+        "天德",
+        "寡宿",
+        "破碎"
+      ],
+      "changsheng_phase": [
+        "死"
+      ],
+      "misc_gods": {
+        "doctor_12": "喜神",
+        "year_12": "天德",
+        "general_12": "攀鞍"
+      },
+      "relationships": {
+        "oppositeIndex": 5,
+        "wealthTrineIndex": 7,
+        "careerTrineIndex": 3
+      }
+    }
+  ],
+  "selected_time_slices": {
+    "decades": [
+      {
+        "label": "15~24 乙酉",
+        "start_age": 15,
+        "end_age": 24,
+        "target_year": 2015,
+        "slice": {
+          "decade": {
+            "name": "15-24岁 大限",
+            "stem": "乙",
+            "branch": "酉",
+            "mapping": {
+              "life_palace": {
+                "target_static_index": 7,
+                "overlapping_text": "本命兄弟"
+              },
+              "sibling_palace": {
+                "target_static_index": 6,
+                "overlapping_text": "本命夫妻"
+              },
+              "spouse_palace": {
+                "target_static_index": 5,
+                "overlapping_text": "本命子女"
+              },
+              "children_palace": {
+                "target_static_index": 4,
+                "overlapping_text": "本命财帛"
+              },
+              "wealth_palace": {
+                "target_static_index": 3,
+                "overlapping_text": "本命疾厄"
+              },
+              "health_palace": {
+                "target_static_index": 2,
+                "overlapping_text": "本命迁移"
+              },
+              "travel_palace": {
+                "target_static_index": 1,
+                "overlapping_text": "本命交友"
+              },
+              "friend_palace": {
+                "target_static_index": 0,
+                "overlapping_text": "本命官禄"
+              },
+              "career_palace": {
+                "target_static_index": 11,
+                "overlapping_text": "本命田宅"
+              },
+              "property_palace": {
+                "target_static_index": 10,
+                "overlapping_text": "本命福德"
+              },
+              "fortune_palace": {
+                "target_static_index": 9,
+                "overlapping_text": "本命父母"
+              },
+              "parent_palace": {
+                "target_static_index": 8,
+                "overlapping_text": "本命命宫"
+              }
+            },
+            "transformations": [
+              "天机化禄",
+              "天梁化权",
+              "紫微化科",
+              "太阴化忌"
+            ],
+            "risk_alert": "太阴-大限化忌 入 本命田宅 冲 本命子女"
+          }
+        }
+      }
+    ],
+    "years": [
+      {
+        "label": "2021年",
+        "year": 2021,
+        "slice": {
+          "year": {
+            "year_date": "2021",
+            "stem": "辛",
+            "branch": "丑",
+            "mapping": {
+              "life_palace": {
+                "target_static_index": 11,
+                "overlapping_text": "本命田宅 叠 大限官禄"
+              },
+              "sibling_palace": {
+                "target_static_index": 10,
+                "overlapping_text": "本命福德 叠 大限田宅"
+              },
+              "spouse_palace": {
+                "target_static_index": 9,
+                "overlapping_text": "本命父母 叠 大限福德"
+              },
+              "children_palace": {
+                "target_static_index": 8,
+                "overlapping_text": "本命命宫 叠 大限父母"
+              },
+              "wealth_palace": {
+                "target_static_index": 7,
+                "overlapping_text": "本命兄弟 叠 大限命"
+              },
+              "health_palace": {
+                "target_static_index": 6,
+                "overlapping_text": "本命夫妻 叠 大限兄弟"
+              },
+              "travel_palace": {
+                "target_static_index": 5,
+                "overlapping_text": "本命子女 叠 大限夫妻"
+              },
+              "friend_palace": {
+                "target_static_index": 4,
+                "overlapping_text": "本命财帛 叠 大限子女"
+              },
+              "career_palace": {
+                "target_static_index": 3,
+                "overlapping_text": "本命疾厄 叠 大限财帛"
+              },
+              "property_palace": {
+                "target_static_index": 2,
+                "overlapping_text": "本命迁移 叠 大限疾厄"
+              },
+              "fortune_palace": {
+                "target_static_index": 1,
+                "overlapping_text": "本命交友 叠 大限迁移"
+              },
+              "parent_palace": {
+                "target_static_index": 0,
+                "overlapping_text": "本命官禄 叠 大限交友"
+              }
+            },
+            "transformations": [
+              "巨门化禄",
+              "太阳化权",
+              "文曲化科",
+              "文昌化忌"
+            ],
+            "risk_alert": "文昌-流年化忌 入 本命福德 冲 本命财帛"
+          }
+        }
+      },
+      {
+        "label": "2022年",
+        "year": 2022,
+        "slice": {
+          "year": {
+            "year_date": "2022",
+            "stem": "壬",
+            "branch": "寅",
+            "mapping": {
+              "life_palace": {
+                "target_static_index": 0,
+                "overlapping_text": "本命官禄 叠 大限交友"
+              },
+              "sibling_palace": {
+                "target_static_index": 11,
+                "overlapping_text": "本命田宅 叠 大限官禄"
+              },
+              "spouse_palace": {
+                "target_static_index": 10,
+                "overlapping_text": "本命福德 叠 大限田宅"
+              },
+              "children_palace": {
+                "target_static_index": 9,
+                "overlapping_text": "本命父母 叠 大限福德"
+              },
+              "wealth_palace": {
+                "target_static_index": 8,
+                "overlapping_text": "本命命宫 叠 大限父母"
+              },
+              "health_palace": {
+                "target_static_index": 7,
+                "overlapping_text": "本命兄弟 叠 大限命"
+              },
+              "travel_palace": {
+                "target_static_index": 6,
+                "overlapping_text": "本命夫妻 叠 大限兄弟"
+              },
+              "friend_palace": {
+                "target_static_index": 5,
+                "overlapping_text": "本命子女 叠 大限夫妻"
+              },
+              "career_palace": {
+                "target_static_index": 4,
+                "overlapping_text": "本命财帛 叠 大限子女"
+              },
+              "property_palace": {
+                "target_static_index": 3,
+                "overlapping_text": "本命疾厄 叠 大限财帛"
+              },
+              "fortune_palace": {
+                "target_static_index": 2,
+                "overlapping_text": "本命迁移 叠 大限疾厄"
+              },
+              "parent_palace": {
+                "target_static_index": 1,
+                "overlapping_text": "本命交友 叠 大限迁移"
+              }
+            },
+            "transformations": [
+              "天梁化禄",
+              "紫微化权",
+              "左辅化科",
+              "武曲化忌"
+            ],
+            "risk_alert": "武曲-流年化忌 入 本命福德 冲 本命财帛"
+          }
+        }
+      }
+    ],
+    "months": [
+      {
+        "label": "2022年5月",
+        "year": 2022,
+        "month": 5,
+        "slice": {
+          "month": {
+            "month_date": "2022-5",
+            "stem": "甲",
+            "branch": "辰",
+            "mapping": {
+              "life_palace": {
+                "target_static_index": 7,
+                "overlapping_text": "本命兄弟 叠 大限命 叠 流年疾厄"
+              },
+              "sibling_palace": {
+                "target_static_index": 6,
+                "overlapping_text": "本命夫妻 叠 大限兄弟 叠 流年迁移"
+              },
+              "spouse_palace": {
+                "target_static_index": 5,
+                "overlapping_text": "本命子女 叠 大限夫妻 叠 流年交友"
+              },
+              "children_palace": {
+                "target_static_index": 4,
+                "overlapping_text": "本命财帛 叠 大限子女 叠 流年官禄"
+              },
+              "wealth_palace": {
+                "target_static_index": 3,
+                "overlapping_text": "本命疾厄 叠 大限财帛 叠 流年田宅"
+              },
+              "health_palace": {
+                "target_static_index": 2,
+                "overlapping_text": "本命迁移 叠 大限疾厄 叠 流年福德"
+              },
+              "travel_palace": {
+                "target_static_index": 1,
+                "overlapping_text": "本命交友 叠 大限迁移 叠 流年父母"
+              },
+              "friend_palace": {
+                "target_static_index": 0,
+                "overlapping_text": "本命官禄 叠 大限交友 叠 流年命"
+              },
+              "career_palace": {
+                "target_static_index": 11,
+                "overlapping_text": "本命田宅 叠 大限官禄 叠 流年兄弟"
+              },
+              "property_palace": {
+                "target_static_index": 10,
+                "overlapping_text": "本命福德 叠 大限田宅 叠 流年夫妻"
+              },
+              "fortune_palace": {
+                "target_static_index": 9,
+                "overlapping_text": "本命父母 叠 大限福德 叠 流年子女"
+              },
+              "parent_palace": {
+                "target_static_index": 8,
+                "overlapping_text": "本命命宫 叠 大限父母 叠 流年财帛"
+              }
+            },
+            "transformations": [
+              "廉贞化禄",
+              "破军化权",
+              "武曲化科",
+              "太阳化忌"
+            ],
+            "risk_alert": "太阳-流月化忌 入 本命田宅 冲 本命子女"
+          }
+        }
+      },
+      {
+        "label": "2022年6月",
+        "year": 2022,
+        "month": 6,
+        "slice": {
+          "month": {
+            "month_date": "2022-6",
+            "stem": "乙",
+            "branch": "巳",
+            "mapping": {
+              "life_palace": {
+                "target_static_index": 8,
+                "overlapping_text": "本命命宫 叠 大限父母 叠 流年财帛"
+              },
+              "sibling_palace": {
+                "target_static_index": 7,
+                "overlapping_text": "本命兄弟 叠 大限命 叠 流年疾厄"
+              },
+              "spouse_palace": {
+                "target_static_index": 6,
+                "overlapping_text": "本命夫妻 叠 大限兄弟 叠 流年迁移"
+              },
+              "children_palace": {
+                "target_static_index": 5,
+                "overlapping_text": "本命子女 叠 大限夫妻 叠 流年交友"
+              },
+              "wealth_palace": {
+                "target_static_index": 4,
+                "overlapping_text": "本命财帛 叠 大限子女 叠 流年官禄"
+              },
+              "health_palace": {
+                "target_static_index": 3,
+                "overlapping_text": "本命疾厄 叠 大限财帛 叠 流年田宅"
+              },
+              "travel_palace": {
+                "target_static_index": 2,
+                "overlapping_text": "本命迁移 叠 大限疾厄 叠 流年福德"
+              },
+              "friend_palace": {
+                "target_static_index": 1,
+                "overlapping_text": "本命交友 叠 大限迁移 叠 流年父母"
+              },
+              "career_palace": {
+                "target_static_index": 0,
+                "overlapping_text": "本命官禄 叠 大限交友 叠 流年命"
+              },
+              "property_palace": {
+                "target_static_index": 11,
+                "overlapping_text": "本命田宅 叠 大限官禄 叠 流年兄弟"
+              },
+              "fortune_palace": {
+                "target_static_index": 10,
+                "overlapping_text": "本命福德 叠 大限田宅 叠 流年夫妻"
+              },
+              "parent_palace": {
+                "target_static_index": 9,
+                "overlapping_text": "本命父母 叠 大限福德 叠 流年子女"
+              }
+            },
+            "transformations": [
+              "天机化禄",
+              "天梁化权",
+              "紫微化科",
+              "太阴化忌"
+            ],
+            "risk_alert": "太阴-流月化忌 入 本命田宅 冲 本命子女"
+          }
+        }
+      }
+    ],
+    "days": [
+      {
+        "label": "2022年5月8日",
+        "year": 2022,
+        "month": 5,
+        "day": 8,
+        "slice": {
+          "day": {
+            "day_date": "2022-5-8",
+            "stem": "辛",
+            "branch": "酉",
+            "mapping": {
+              "life_palace": {
+                "target_static_index": 2,
+                "overlapping_text": "本命迁移 叠 大限疾厄 叠 流年福德 叠 流月疾厄"
+              },
+              "sibling_palace": {
+                "target_static_index": 1,
+                "overlapping_text": "本命交友 叠 大限迁移 叠 流年父母 叠 流月迁移"
+              },
+              "spouse_palace": {
+                "target_static_index": 0,
+                "overlapping_text": "本命官禄 叠 大限交友 叠 流年命 叠 流月交友"
+              },
+              "children_palace": {
+                "target_static_index": 11,
+                "overlapping_text": "本命田宅 叠 大限官禄 叠 流年兄弟 叠 流月官禄"
+              },
+              "wealth_palace": {
+                "target_static_index": 10,
+                "overlapping_text": "本命福德 叠 大限田宅 叠 流年夫妻 叠 流月田宅"
+              },
+              "health_palace": {
+                "target_static_index": 9,
+                "overlapping_text": "本命父母 叠 大限福德 叠 流年子女 叠 流月福德"
+              },
+              "travel_palace": {
+                "target_static_index": 8,
+                "overlapping_text": "本命命宫 叠 大限父母 叠 流年财帛 叠 流月父母"
+              },
+              "friend_palace": {
+                "target_static_index": 7,
+                "overlapping_text": "本命兄弟 叠 大限命 叠 流年疾厄 叠 流月命"
+              },
+              "career_palace": {
+                "target_static_index": 6,
+                "overlapping_text": "本命夫妻 叠 大限兄弟 叠 流年迁移 叠 流月兄弟"
+              },
+              "property_palace": {
+                "target_static_index": 5,
+                "overlapping_text": "本命子女 叠 大限夫妻 叠 流年交友 叠 流月夫妻"
+              },
+              "fortune_palace": {
+                "target_static_index": 4,
+                "overlapping_text": "本命财帛 叠 大限子女 叠 流年官禄 叠 流月子女"
+              },
+              "parent_palace": {
+                "target_static_index": 3,
+                "overlapping_text": "本命疾厄 叠 大限财帛 叠 流年田宅 叠 流月财帛"
+              }
+            },
+            "transformations": [
+              "巨门化禄",
+              "太阳化权",
+              "文曲化科",
+              "文昌化忌"
+            ],
+            "risk_alert": "文昌-流日化忌 入 本命福德 冲 本命财帛"
+          }
+        }
+      },
+      {
+        "label": "2022年5月9日",
+        "year": 2022,
+        "month": 5,
+        "day": 9,
+        "slice": {
+          "day": {
+            "day_date": "2022-5-9",
+            "stem": "壬",
+            "branch": "戌",
+            "mapping": {
+              "life_palace": {
+                "target_static_index": 3,
+                "overlapping_text": "本命疾厄 叠 大限财帛 叠 流年田宅 叠 流月财帛"
+              },
+              "sibling_palace": {
+                "target_static_index": 2,
+                "overlapping_text": "本命迁移 叠 大限疾厄 叠 流年福德 叠 流月疾厄"
+              },
+              "spouse_palace": {
+                "target_static_index": 1,
+                "overlapping_text": "本命交友 叠 大限迁移 叠 流年父母 叠 流月迁移"
+              },
+              "children_palace": {
+                "target_static_index": 0,
+                "overlapping_text": "本命官禄 叠 大限交友 叠 流年命 叠 流月交友"
+              },
+              "wealth_palace": {
+                "target_static_index": 11,
+                "overlapping_text": "本命田宅 叠 大限官禄 叠 流年兄弟 叠 流月官禄"
+              },
+              "health_palace": {
+                "target_static_index": 10,
+                "overlapping_text": "本命福德 叠 大限田宅 叠 流年夫妻 叠 流月田宅"
+              },
+              "travel_palace": {
+                "target_static_index": 9,
+                "overlapping_text": "本命父母 叠 大限福德 叠 流年子女 叠 流月福德"
+              },
+              "friend_palace": {
+                "target_static_index": 8,
+                "overlapping_text": "本命命宫 叠 大限父母 叠 流年财帛 叠 流月父母"
+              },
+              "career_palace": {
+                "target_static_index": 7,
+                "overlapping_text": "本命兄弟 叠 大限命 叠 流年疾厄 叠 流月命"
+              },
+              "property_palace": {
+                "target_static_index": 6,
+                "overlapping_text": "本命夫妻 叠 大限兄弟 叠 流年迁移 叠 流月兄弟"
+              },
+              "fortune_palace": {
+                "target_static_index": 5,
+                "overlapping_text": "本命子女 叠 大限夫妻 叠 流年交友 叠 流月夫妻"
+              },
+              "parent_palace": {
+                "target_static_index": 4,
+                "overlapping_text": "本命财帛 叠 大限子女 叠 流年官禄 叠 流月子女"
+              }
+            },
+            "transformations": [
+              "天梁化禄",
+              "紫微化权",
+              "左辅化科",
+              "武曲化忌"
+            ],
+            "risk_alert": "武曲-流日化忌 入 本命福德 冲 本命财帛"
+          }
+        }
+      },
+      {
+        "label": "2022年5月10日",
+        "year": 2022,
+        "month": 5,
+        "day": 10,
+        "slice": {
+          "day": {
+            "day_date": "2022-5-10",
+            "stem": "癸",
+            "branch": "亥",
+            "mapping": {
+              "life_palace": {
+                "target_static_index": 4,
+                "overlapping_text": "本命财帛 叠 大限子女 叠 流年官禄 叠 流月子女"
+              },
+              "sibling_palace": {
+                "target_static_index": 3,
+                "overlapping_text": "本命疾厄 叠 大限财帛 叠 流年田宅 叠 流月财帛"
+              },
+              "spouse_palace": {
+                "target_static_index": 2,
+                "overlapping_text": "本命迁移 叠 大限疾厄 叠 流年福德 叠 流月疾厄"
+              },
+              "children_palace": {
+                "target_static_index": 1,
+                "overlapping_text": "本命交友 叠 大限迁移 叠 流年父母 叠 流月迁移"
+              },
+              "wealth_palace": {
+                "target_static_index": 0,
+                "overlapping_text": "本命官禄 叠 大限交友 叠 流年命 叠 流月交友"
+              },
+              "health_palace": {
+                "target_static_index": 11,
+                "overlapping_text": "本命田宅 叠 大限官禄 叠 流年兄弟 叠 流月官禄"
+              },
+              "travel_palace": {
+                "target_static_index": 10,
+                "overlapping_text": "本命福德 叠 大限田宅 叠 流年夫妻 叠 流月田宅"
+              },
+              "friend_palace": {
+                "target_static_index": 9,
+                "overlapping_text": "本命父母 叠 大限福德 叠 流年子女 叠 流月福德"
+              },
+              "career_palace": {
+                "target_static_index": 8,
+                "overlapping_text": "本命命宫 叠 大限父母 叠 流年财帛 叠 流月父母"
+              },
+              "property_palace": {
+                "target_static_index": 7,
+                "overlapping_text": "本命兄弟 叠 大限命 叠 流年疾厄 叠 流月命"
+              },
+              "fortune_palace": {
+                "target_static_index": 6,
+                "overlapping_text": "本命夫妻 叠 大限兄弟 叠 流年迁移 叠 流月兄弟"
+              },
+              "parent_palace": {
+                "target_static_index": 5,
+                "overlapping_text": "本命子女 叠 大限夫妻 叠 流年交友 叠 流月夫妻"
+              }
+            },
+            "transformations": [
+              "破军化禄",
+              "巨门化权",
+              "太阴化科",
+              "贪狼化忌"
+            ],
+            "risk_alert": "贪狼-流日化忌 入 本命官禄 冲 本命夫妻"
+          }
+        }
+      }
+    ]
+  }
+}

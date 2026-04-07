@@ -1,0 +1,9 @@
+{
+  "calendar": "solar",
+  "date": "1984-7-24",
+  "timeIndex": 7,
+  "gender": "女",
+  "fixLeap": true,
+  "isLeapMonth": false,
+  "language": "zh-CN"
+}

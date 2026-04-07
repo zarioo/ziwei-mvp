@@ -1,0 +1,495 @@
+{
+  "version": 6,
+  "language": "zh",
+  "gender": "female",
+  "solarBirthDate": "1984年7月24日",
+  "lunarBirthDate": "农历 一九八四年六月廿六",
+  "solarBirthDateISO": "1984-07-24",
+  "lunarYear": 1984,
+  "lunarMonth": 6,
+  "lunarMonthRaw": 6,
+  "lunarDay": 26,
+  "lunarIsLeapMonth": false,
+  "birthTime": {
+    "hour": 13,
+    "minute": 59
+  },
+  "inputBirthTime": {
+    "hour": 14,
+    "minute": 20
+  },
+  "trueSolarBirthTime": {
+    "hour": 13,
+    "minute": 59
+  },
+  "timeAdjustment": -20.594908104000343,
+  "birthYear": 1984,
+  "birthMonth": 7,
+  "birthDay": 24,
+  "birthHour": 13,
+  "wuxingju": "水二局",
+  "mingzhu": "贪狼",
+  "shenzhu": "火星",
+  "mingPalacePosition": 0,
+  "bodyPalacePosition": 10,
+  "laiyinPalacePosition": 2,
+  "doujun": "寅",
+  "palaces": [
+    {
+      "name": "命宫",
+      "key": "ming",
+      "displayName": "命宫",
+      "dizhi": "子",
+      "tianGan": "丙",
+      "position": 0,
+      "majorStars": [
+        {
+          "name": "破军",
+          "displayName": "破军",
+          "type": "major",
+          "brightness": "庙",
+          "sihua": "化权"
+        }
+      ],
+      "minorStars": [
+        {
+          "name": "解神",
+          "displayName": "解神",
+          "type": "major",
+          "brightness": "庙",
+          "sihua": null
+        },
+        {
+          "name": "天才",
+          "displayName": "天才",
+          "type": "talent",
+          "brightness": "旺",
+          "sihua": null
+        }
+      ],
+      "sihuaStars": [],
+      "changsheng": "墓",
+      "boshi": "青龙",
+      "suiQian": "岁建",
+      "jiangQian": "将星",
+      "isBodyPalace": false,
+      "xiaoxianAges": [
+        11,
+        23,
+        35
+      ],
+      "liunianAges": [
+        1,
+        13,
+        25
+      ]
+    },
+    {
+      "name": "兄弟宫",
+      "key": "xiongdi",
+      "displayName": "兄弟宫",
+      "dizhi": "亥",
+      "tianGan": "乙",
+      "position": 1,
+      "majorStars": [
+        {
+          "name": "太阳",
+          "displayName": "太阳",
+          "type": "major",
+          "brightness": "陷",
+          "sihua": "化忌"
+        }
+      ],
+      "minorStars": [
+        {
+          "name": "文曲",
+          "displayName": "文曲",
+          "type": "lucky",
+          "brightness": "旺",
+          "sihua": null,
+          "xiangxinSihua": "化忌"
+        },
+        {
+          "name": "天贵",
+          "displayName": "天贵",
+          "type": "noble",
+          "brightness": "平",
+          "sihua": null
+        },
+        {
+          "name": "副旬",
+          "displayName": "副旬",
+          "type": "major",
+          "brightness": "平",
+          "sihua": null
+        }
+      ],
+      "sihuaStars": [],
+      "changsheng": "绝",
+      "boshi": "小耗",
+      "suiQian": "病符",
+      "jiangQian": "亡神",
+      "isBodyPalace": false,
+      "xiaoxianAges": [
+        12,
+        24,
+        36
+      ],
+      "liunianAges": [
+        12,
+        24,
+        36
+      ]
+    },
+    {
+      "name": "夫妻宫",
+      "key": "fuqi",
+      "displayName": "夫妻宫",
+      "dizhi": "戌",
+      "tianGan": "甲",
+      "position": 2,
+      "majorStars": [
+        {
+          "name": "武曲",
+          "displayName": "武曲",
+          "type": "major",
+          "brightness": "庙",
+          "sihua": "化科",
+          "gongganSihua": "化科"
+        }
+      ],
+      "minorStars": [
+        {
+          "name": "凤阁",
+          "displayName": "凤阁",
+          "type": "noble",
+          "brightness": "庙",
+          "sihua": null
+        },
+        {
+          "name": "三台",
+          "displayName": "三台",
+          "type": "noble",
+          "brightness": "旺",
+          "sihua": null
+        },
+        {
+          "name": "寡宿",
+          "displayName": "寡宿",
+          "type": "lonely",
+          "brightness": "陷",
+          "sihua": null
+        }
+      ],
+      "sihuaStars": [],
+      "changsheng": "胎",
+      "boshi": "将军",
+      "suiQian": "吊客",
+      "jiangQian": "月煞",
+      "isBodyPalace": false,
+      "xiaoxianAges": [
+        1,
+        13,
+        25
+      ],
+      "liunianAges": [
+        11,
+        23,
+        35
+      ]
+    }
+  ],
+  "sihua": {
+    "bensheng": [
+      {
+        "star": "廉贞",
+        "sihua": "化禄",
+        "palace": "迁移宫",
+        "tianGan": "甲"
+      },
+      {
+        "star": "破军",
+        "sihua": "化权",
+        "palace": "命宫",
+        "tianGan": "甲"
+      },
+      {
+        "star": "武曲",
+        "sihua": "化科",
+        "palace": "夫妻宫",
+        "tianGan": "甲"
+      }
+    ],
+    "dayun": [],
+    "liunian": []
+  },
+  "daxian": [
+    {
+      "index": 1,
+      "ageRange": "2~11",
+      "startAge": 2,
+      "endAge": 11,
+      "palace": "命宫",
+      "palacePosition": 0,
+      "tianGan": "丙",
+      "dizhi": "子",
+      "dizhiIndex": 0,
+      "sihua": [
+        {
+          "star": "天同",
+          "sihua": "化禄",
+          "palace": "子女宫",
+          "tianGan": "丙"
+        },
+        {
+          "star": "天机",
+          "sihua": "化权",
+          "palace": "父母宫",
+          "tianGan": "丙"
+        },
+        {
+          "star": "文昌",
+          "sihua": "化科",
+          "palace": "田宅宫",
+          "tianGan": "丙"
+        }
+      ],
+      "stars": [
+        {
+          "name": "禄存",
+          "dizhiIndex": 5
+        },
+        {
+          "name": "擎羊",
+          "dizhiIndex": 6
+        },
+        {
+          "name": "陀罗",
+          "dizhiIndex": 4
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "ageRange": "12~21",
+      "startAge": 12,
+      "endAge": 21,
+      "palace": "兄弟宫",
+      "palacePosition": 1,
+      "tianGan": "乙",
+      "dizhi": "亥",
+      "dizhiIndex": 11,
+      "sihua": [
+        {
+          "star": "天机",
+          "sihua": "化禄",
+          "palace": "父母宫",
+          "tianGan": "乙"
+        },
+        {
+          "star": "天梁",
+          "sihua": "化权",
+          "palace": "疾厄宫",
+          "tianGan": "乙"
+        },
+        {
+          "star": "紫微",
+          "sihua": "化科",
+          "palace": "福德宫",
+          "tianGan": "乙"
+        }
+      ],
+      "stars": [
+        {
+          "name": "禄存",
+          "dizhiIndex": 3
+        },
+        {
+          "name": "擎羊",
+          "dizhiIndex": 4
+        },
+        {
+          "name": "陀罗",
+          "dizhiIndex": 2
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "ageRange": "22~31",
+      "startAge": 22,
+      "endAge": 31,
+      "palace": "夫妻宫",
+      "palacePosition": 2,
+      "tianGan": "甲",
+      "dizhi": "戌",
+      "dizhiIndex": 10,
+      "sihua": [
+        {
+          "star": "廉贞",
+          "sihua": "化禄",
+          "palace": "迁移宫",
+          "tianGan": "甲"
+        },
+        {
+          "star": "破军",
+          "sihua": "化权",
+          "palace": "命宫",
+          "tianGan": "甲"
+        },
+        {
+          "star": "武曲",
+          "sihua": "化科",
+          "palace": "夫妻宫",
+          "tianGan": "甲"
+        }
+      ],
+      "stars": [
+        {
+          "name": "禄存",
+          "dizhiIndex": 2
+        },
+        {
+          "name": "擎羊",
+          "dizhiIndex": 3
+        },
+        {
+          "name": "陀罗",
+          "dizhiIndex": 1
+        }
+      ]
+    }
+  ],
+  "liunian": [
+    {
+      "year": 1984,
+      "age": 1,
+      "palace": "命宫",
+      "palacePosition": 0,
+      "tianGan": "甲",
+      "dizhi": "子",
+      "dizhiIndex": 0,
+      "sihua": [
+        {
+          "star": "廉贞",
+          "sihua": "化禄",
+          "palace": "迁移宫",
+          "tianGan": "甲"
+        },
+        {
+          "star": "破军",
+          "sihua": "化权",
+          "palace": "命宫",
+          "tianGan": "甲"
+        },
+        {
+          "star": "武曲",
+          "sihua": "化科",
+          "palace": "夫妻宫",
+          "tianGan": "甲"
+        }
+      ],
+      "stars": [
+        {
+          "name": "禄存",
+          "dizhiIndex": 2
+        },
+        {
+          "name": "擎羊",
+          "dizhiIndex": 3
+        },
+        {
+          "name": "陀罗",
+          "dizhiIndex": 1
+        }
+      ]
+    },
+    {
+      "year": 1985,
+      "age": 2,
+      "palace": "父母宫",
+      "palacePosition": 11,
+      "tianGan": "乙",
+      "dizhi": "丑",
+      "dizhiIndex": 1,
+      "sihua": [
+        {
+          "star": "天机",
+          "sihua": "化禄",
+          "palace": "父母宫",
+          "tianGan": "乙"
+        },
+        {
+          "star": "天梁",
+          "sihua": "化权",
+          "palace": "疾厄宫",
+          "tianGan": "乙"
+        },
+        {
+          "star": "紫微",
+          "sihua": "化科",
+          "palace": "福德宫",
+          "tianGan": "乙"
+        }
+      ],
+      "stars": [
+        {
+          "name": "禄存",
+          "dizhiIndex": 3
+        },
+        {
+          "name": "擎羊",
+          "dizhiIndex": 4
+        },
+        {
+          "name": "陀罗",
+          "dizhiIndex": 2
+        }
+      ]
+    },
+    {
+      "year": 1986,
+      "age": 3,
+      "palace": "福德宫",
+      "palacePosition": 10,
+      "tianGan": "丙",
+      "dizhi": "寅",
+      "dizhiIndex": 2,
+      "sihua": [
+        {
+          "star": "天同",
+          "sihua": "化禄",
+          "palace": "子女宫",
+          "tianGan": "丙"
+        },
+        {
+          "star": "天机",
+          "sihua": "化权",
+          "palace": "父母宫",
+          "tianGan": "丙"
+        },
+        {
+          "star": "文昌",
+          "sihua": "化科",
+          "palace": "田宅宫",
+          "tianGan": "丙"
+        }
+      ],
+      "stars": [
+        {
+          "name": "禄存",
+          "dizhiIndex": 5
+        },
+        {
+          "name": "擎羊",
+          "dizhiIndex": 6
+        },
+        {
+          "name": "陀罗",
+          "dizhiIndex": 4
+        }
+      ]
+    }
+  ],
+  "id": "45b3dcd6-30df-4078-81a0-5b305194b668"
+}

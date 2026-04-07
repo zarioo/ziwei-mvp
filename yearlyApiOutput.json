@@ -1,0 +1,36 @@
+{
+  "year": 2026,
+  "age": 43,
+  "palace": "仆役",
+  "palacePosition": 3,
+  "tianGan": "乙",
+  "dizhi": "巳",
+  "dizhiIndex": 5,
+  "sihua": [
+    {
+      "star": "天机",
+      "sihua": null,
+      "palace": null,
+      "tianGan": "乙"
+    },
+    {
+      "star": "天梁",
+      "sihua": null,
+      "palace": null,
+      "tianGan": "乙"
+    },
+    {
+      "star": "紫微",
+      "sihua": null,
+      "palace": null,
+      "tianGan": "乙"
+    },
+    {
+      "star": "太阴",
+      "sihua": null,
+      "palace": null,
+      "tianGan": "乙"
+    }
+  ],
+  "stars": []
+}

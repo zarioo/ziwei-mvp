@@ -1,0 +1,33 @@
+{
+  "name": "next-tmp",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --webpack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.5.0",
+    "iztro": "^2.5.4",
+    "lru-cache": "^11.2.5",
+    "next": "^16.1.6",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-iztro": "^1.4.2",
+    "resend": "^3.5.0",
+    "socks-proxy-agent": "^8.0.5",
+    "undici": "^7.22.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.1.4",
+    "tsx": "^4.21.0",
+    "typescript": "^5"
+  }
+}

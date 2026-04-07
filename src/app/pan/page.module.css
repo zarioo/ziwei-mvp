@@ -1,0 +1,556 @@
+.page {
+  min-height: 100vh;
+  background: #f7f7f4;
+  color: #1f1f1f;
+  padding: 28px;
+}
+
+.container {
+  max-width: 1160px;
+  margin: 0 auto;
+  display: grid;
+  gap: 24px;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 20px;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid rgba(32, 32, 32, 0.08);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+}
+
+.hero h1 {
+  font-size: 30px;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+.hero p {
+  color: rgba(31, 31, 31, 0.6);
+  font-size: 14px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid rgba(32, 32, 32, 0.08);
+  padding: 20px 22px;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.05);
+  display: grid;
+  gap: 16px;
+}
+
+.card h2 {
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 16px;
+}
+
+/* 登录区与星盘列表 */
+.authBlock {
+  display: grid;
+  gap: 10px;
+}
+
+.authRow {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px 16px;
+  align-items: end;
+}
+
+.authActions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 2px;
+  flex-wrap: wrap;
+}
+
+.codeField {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+  color: rgba(31, 31, 31, 0.7);
+  min-width: 140px;
+}
+
+.chartList {
+  display: grid;
+  gap: 6px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  color: rgba(31, 31, 31, 0.72);
+}
+
+.input {
+  background: #fbfbf9;
+  border: 1px solid rgba(32, 32, 32, 0.12);
+  color: #1f1f1f;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.input:focus {
+  outline: 2px solid rgba(64, 64, 64, 0.25);
+  border-color: rgba(64, 64, 64, 0.35);
+}
+
+.note {
+  font-size: 12px;
+  color: rgba(31, 31, 31, 0.55);
+}
+
+.button {
+  border: none;
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #ffffff;
+  background: #1f1f1f;
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.secondaryButton {
+  border: 1px solid rgba(31, 31, 31, 0.2);
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #1f1f1f;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.secondaryButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.buttonRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+  box-shadow: none;
+}
+
+.button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 26px rgba(0, 0, 0, 0.16);
+}
+
+.helper {
+  font-size: 12px;
+  color: rgba(31, 31, 31, 0.5);
+}
+
+.error {
+  color: #c0392b;
+  font-size: 13px;
+}
+
+.muted {
+  font-size: 12px;
+  color: rgba(31, 31, 31, 0.6);
+}
+
+.resultCard {
+  min-height: 540px;
+}
+
+.resultHeader {
+  display: grid;
+  gap: 8px;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 12px;
+  color: rgba(31, 31, 31, 0.6);
+}
+
+.placeholder {
+  border-radius: 12px;
+  border: 1px dashed rgba(31, 31, 31, 0.2);
+  padding: 24px;
+  text-align: center;
+  color: rgba(31, 31, 31, 0.6);
+  background: #fafaf7;
+}
+
+/* ===== 后端排盘结果样式 ===== */
+.resultWrap {
+  display: grid;
+  gap: 16px;
+}
+
+.resultSummary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 8px 12px;
+  padding: 12px;
+  border-radius: 12px;
+  background: #f8f6f1;
+  font-size: 13px;
+  color: rgba(31, 31, 31, 0.8);
+}
+
+.palaceGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.palaceCard {
+  border: 1px solid rgba(31, 31, 31, 0.1);
+  border-radius: 12px;
+  padding: 10px 12px;
+  background: #ffffff;
+  display: grid;
+  gap: 6px;
+}
+
+.palaceTitle {
+  font-weight: 700;
+  font-size: 13px;
+  color: #1f1f1f;
+}
+
+.starRow {
+  font-size: 12px;
+  color: rgba(31, 31, 31, 0.7);
+}
+
+/* ===== 盘面容器 ===== */
+.astrolabeWrap {
+  width: 100%;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.astrolabeSection {
+  display: grid;
+  gap: 16px;
+}
+
+.horoscopePanel {
+  display: grid;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  background: #f8f6f1;
+  border: 1px solid rgba(31, 31, 31, 0.08);
+}
+
+.pickerRow {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  align-items: center;
+  gap: 10px;
+}
+
+.pickerLabel {
+  font-size: 13px;
+  color: rgba(31, 31, 31, 0.7);
+}
+
+.pickerNav {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 8px;
+}
+
+.pickerArrow {
+  border: 1px solid rgba(31, 31, 31, 0.18);
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 6px 10px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.pickerValue {
+  border: 1px solid rgba(31, 31, 31, 0.2);
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 8px 12px;
+  display: grid;
+  gap: 4px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.pickerSub {
+  font-size: 12px;
+  color: rgba(31, 31, 31, 0.55);
+}
+
+.horoscopeActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.pickerOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 40;
+}
+
+.pickerDialog {
+  width: min(720px, 92vw);
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 18px 20px;
+  display: grid;
+  gap: 16px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+}
+
+.pickerHeader {
+  display: grid;
+  gap: 6px;
+}
+
+.pickerGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+  max-height: 360px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.pickerCard {
+  border: 1px solid rgba(31, 31, 31, 0.18);
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 12px 10px;
+  display: grid;
+  gap: 6px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.pickerCardActive {
+  background: #1f1f1f;
+  color: #ffffff;
+  border-color: #1f1f1f;
+}
+
+.pickerCardMain {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.pickerCardSub {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.pickerActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.pickerEmpty {
+  border-radius: 12px;
+  border: 1px dashed rgba(31, 31, 31, 0.2);
+  padding: 16px;
+  text-align: center;
+  color: rgba(31, 31, 31, 0.55);
+  background: #fafaf7;
+}
+
+/* ===== 盘面主题颜色变量 ===== */
+.astrolabeWrap :global(.iztro-astrolabe-theme-default) {
+  /* 主星颜色：主星、软星、宫位名称 */
+  --iztro-color-major: #1f1f1f;
+  
+  /* 焦点颜色：化忌、宫位焦点背景 */
+  --iztro-color-focus: #fe0d0d;
+  
+  /* 权星颜色：化权、天马星、性别（男） */
+  --iztro-color-quan: #3562ff;
+  
+  /* 煞星颜色：煞星（副星的一种） */
+  --iztro-color-tough: #0a8a5f;
+  
+  /* 吉星颜色：化禄、禄存星、化忌背景 */
+  --iztro-color-awesome: #a700da;
+  
+  /* 活跃星颜色：天马星、大运标记 */
+  --iztro-color-active: #b46a14;
+  
+  /* 喜星颜色：花星（副星的一种）、性别（女） */
+  --iztro-color-happy: #8f5b2a;
+  
+  /* 好星颜色：助星（副星的一种）、宫位干支、化科 */
+  --iztro-color-nice: #7a4a1f;
+  
+  /* 装饰星1：左24山、小限标记 */
+  --iztro-color-decorator-1: #9c6b34;
+  
+  /* 装饰星2：右24山、流年标记 */
+  --iztro-color-decorator-2: #b17c4a;
+  
+  /* 文本颜色：一般文本、形容词星、亮度星、宫位中心信息 */
+  --iztro-color-text: rgba(31, 31, 31, 0.8);
+  
+  /* 边框颜色：宫位边框、各种边框线 */
+  --iztro-color-border: rgba(31, 31, 31, 0.12);
+}
+
+/* ===== 盘面整体容器 ===== */
+.astrolabeWrap :global(.iztro-astrolabe) {
+  background: #fcfcfa;
+  border: 1px solid rgba(31, 31, 31, 0.12);
+  border-radius: 14px;
+  padding: 10px;
+}
+
+/* ===== 宫位容器 ===== */
+.astrolabeWrap :global(.iztro-palace) {
+  background: rgba(248, 248, 244, 0.9);
+  position: relative; /* 为绝对定位的宫位名称提供定位上下文 */
+}
+
+/* ===== 宫位名称样式调整 ===== */
+/* 字号、加粗、位置调整 */
+.astrolabeWrap :global(.iztro-palace-name) {
+  font-size: 16px !important; /* 调大字号（默认13px） */
+  font-weight: 700 !important; /* 加粗（默认bold，这里更粗） */
+  position: absolute !important; /* 绝对定位 */
+  left: 50% !important; /* 水平居中 */
+  bottom: 4px !important; /* 位于底部 */
+  transform: translateX(-50%) !important; /* 修正为绝对居中 */
+  z-index: 10; /* 确保在其他元素之上 */
+}
+
+/* ===== 盘面元素样式调整说明 ===== */
+/* 
+ * 【主星相关】
+ * - 主星颜色：--iztro-color-major
+ * - 覆盖类：.iztro-star-major
+ * 
+ * 【副星相关】
+ * 副星颜色由以下CSS变量控制：
+ * - 煞星：--iztro-color-tough（如：擎羊、陀罗、火星、铃星等）
+ * - 花星：--iztro-color-happy（如：红鸾、天喜、天姚等）
+ * - 助星：--iztro-color-nice（如：左辅、右弼、天魁、天钺等）
+ * - 形容词星：--iztro-color-text（如：天刑、天马等）
+ * - 亮度星：--iztro-color-text（如：庙、旺、利、得、平、陷等）
+ * 
+ * 如需统一调整所有副星颜色，可以覆盖以下全局类：
+ * .astrolabeWrap :global(.iztro-star-tough) { color: 你的颜色; }      // 煞星
+ * .astrolabeWrap :global(.iztro-star-flower) { color: 你的颜色; }    // 花星
+ * .astrolabeWrap :global(.iztro-star-helper) { color: 你的颜色; }    // 助星
+ * .astrolabeWrap :global(.iztro-star-adjective) { color: 你的颜色; } // 形容词星
+ * .astrolabeWrap :global(.iztro-star-brightness) { color: 你的颜色; } // 亮度星
+ * 
+ * 如需统一调整所有副星（不管类型），可以覆盖：
+ * .astrolabeWrap :global(.iztro-palace-minor .iztro-star) { color: 你的颜色; }
+ * 
+ * 【宫位相关】
+ * - 宫位名称：--iztro-color-major（覆盖类：.iztro-palace-name）
+ *   * 字号调整：修改 .iztro-palace-name 的 font-size
+ *   * 加粗调整：修改 .iztro-palace-name 的 font-weight
+ *   * 位置调整：修改 .iztro-palace-name 的 position/top/right/left/bottom
+ * - 宫位干支：--iztro-color-nice（覆盖类：.iztro-palace-gz）
+ * - 宫位边框：--iztro-color-border（覆盖类：.iztro-palace）
+ * - 左24山：--iztro-color-decorator-1（覆盖类：.iztro-palace-lft24）
+ * - 右24山：--iztro-color-decorator-2（覆盖类：.iztro-palace-rgt24）
+ * 
+ * 【文字大小调整】
+ * - 主星字号：修改 --iztro-star-font-size-big（默认13px）
+ * - 副星字号：修改 --iztro-star-font-size-small（默认12px）
+ * - 宫位名称字号：直接覆盖 .iztro-palace-name 的 font-size
+ * - 其他元素字号：覆盖对应的类名，如 .iztro-palace-gz、.iztro-palace-lft24 等
+ * 
+ * 【位置调整】
+ * - 使用绝对定位：position: absolute + top/right/bottom/left
+ * - 使用相对定位：position: relative + margin/padding
+ * - 使用 flex 布局：display: flex + justify-content/align-items
+ * - 使用 grid 布局：修改 grid-template-areas 或 grid-area
+ * 
+ * 【四化相关】
+ * - 化禄：--iztro-color-awesome
+ * - 化权：--iztro-color-quan
+ * - 化科：--iztro-color-nice
+ * - 化忌：--iztro-color-focus
+ * 
+ * 【特殊星曜】
+ * - 天马星：--iztro-color-active（覆盖类：.iztro-star-tianma）
+ * - 禄存星：--iztro-color-awesome（覆盖类：.iztro-star-lucun）
+ * 
+ * 【运限相关】
+ * - 大运：--iztro-color-decadal（默认使用 --iztro-color-active）
+ * - 流年：--iztro-color-yearly（默认使用 --iztro-color-decorator-2）
+ * - 流月：--iztro-color-monthly（默认使用 --iztro-color-nice）
+ * - 流日：--iztro-color-daily（默认使用 --iztro-color-decorator-1）
+ * - 流时：--iztro-color-hourly（默认使用 --iztro-color-text）
+ */
+
+.serif {
+  font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong",
+    "Times New Roman", serif;
+}
+
+@media (max-width: 960px) {
+  .page {
+    padding: 18px;
+  }
+
+  .hero {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+}
+

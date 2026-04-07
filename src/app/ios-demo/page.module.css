@@ -1,0 +1,1038 @@
+.page {
+  min-height: 100dvh;
+  padding: 24px 18px;
+  background:
+    radial-gradient(circle at top right, rgba(147, 170, 249, 0.2), transparent 28%),
+    radial-gradient(circle at bottom left, rgba(54, 106, 245, 0.1), transparent 30%),
+    linear-gradient(180deg, #f7f8fa 0%, #eef1f5 100%);
+  font-family: "SF Pro Display", "PingFang SC", "Hiragino Sans GB", var(--font-geist-sans),
+    sans-serif;
+  color: #111111;
+  overflow: hidden;
+  display: flex;
+}
+
+.page :where(h1, h2, h3, h4, h5, h6) {
+  font-family: "Iowan Old Style", "Baskerville", "Times New Roman", "Songti SC",
+    "STSong", serif;
+}
+
+.appShell {
+  position: relative;
+  width: min(100%, 1180px);
+  height: calc(100dvh - 48px);
+  max-height: calc(100dvh - 48px);
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.84);
+  backdrop-filter: blur(28px);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow:
+    0 24px 60px rgba(15, 23, 42, 0.08),
+    0 1px 0 rgba(255, 255, 255, 0.9) inset;
+  border-radius: 28px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.topBar {
+  padding: 24px 28px 18px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(250, 251, 253, 0.96));
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  backdrop-filter: blur(24px);
+}
+
+.topBarLead {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.topBar h1 {
+  margin: 6px 0 0;
+  font-size: clamp(30px, 4vw, 38px);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: #111111;
+}
+
+.eyebrow,
+.cardEyebrow {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(17, 17, 17, 0.46);
+}
+
+.topMeta {
+  display: grid;
+  gap: 6px;
+  justify-items: end;
+  font-size: 12px;
+  color: rgba(17, 17, 17, 0.56);
+}
+
+.content {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 24px 28px 120px;
+  background: transparent;
+}
+
+.contentWithQuestionDock {
+  padding-bottom: 198px;
+}
+
+.contentWithComposer {
+  padding-bottom: 238px;
+}
+
+.tabPane,
+.chatPane {
+  display: grid;
+  gap: 18px;
+  min-width: 0;
+}
+
+.heroCard,
+.card,
+.emptyCard,
+.chatBubble {
+  border-radius: 22px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.05);
+  min-width: 0;
+  width: 100%;
+}
+
+.heroCard,
+.card {
+  padding: 22px;
+}
+
+.heroCard {
+  display: grid;
+  gap: 16px;
+  background:
+    radial-gradient(circle at top right, rgba(147, 170, 249, 0.22), transparent 28%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(244, 246, 250, 0.96));
+}
+
+.heroCard h2 {
+  margin: 8px 0 6px;
+  font-size: clamp(28px, 4vw, 36px);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  color: #111111;
+}
+
+.heroCard h2:only-child {
+  margin: 0;
+}
+
+.heroCard p,
+.card p,
+.callInfo,
+.markdownBody,
+.userText,
+.reasoning {
+  color: #2f2f33;
+  line-height: 1.62;
+}
+
+.markdownBody,
+.reasoning {
+  font-family: "Iowan Old Style", "Baskerville", "Times New Roman", "Songti SC",
+    "STSong", serif;
+}
+
+.actionRow {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.primaryButton,
+.secondaryButton,
+.fullButton,
+.questionButton,
+.tabButton,
+.uploadButton,
+.attachmentTag {
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  transition:
+    transform 160ms ease,
+    background 160ms ease,
+    box-shadow 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
+}
+
+.primaryButton,
+.fullButton {
+  background: linear-gradient(135deg, #111111 0%, #2a2a2f 100%);
+  color: #ffffff;
+  box-shadow: 0 14px 30px rgba(17, 17, 17, 0.16);
+}
+
+.primaryButton:hover,
+.secondaryButton:hover,
+.fullButton:hover,
+.questionButton:hover,
+.tabButton:hover,
+.uploadButton:hover {
+  transform: translateY(-1px);
+}
+
+.primaryButton,
+.secondaryButton,
+.fullButton,
+.uploadButton {
+  min-height: 50px;
+  padding: 0 18px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.secondaryButton,
+.uploadButton,
+.questionButton,
+.attachmentTag {
+  background: rgba(245, 247, 251, 0.96);
+  color: #22252d;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.fullButton {
+  width: 100%;
+  background: linear-gradient(135deg, #366af5 0%, #5b86f7 100%);
+  box-shadow: 0 16px 34px rgba(54, 106, 245, 0.22);
+}
+
+.homeActionGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.homeActionButton {
+  min-height: 52px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 16px;
+  background: linear-gradient(180deg, #1b1b1f 0%, #111111 100%);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 14px 28px rgba(17, 17, 17, 0.12);
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    border-color 160ms ease;
+}
+
+.homeActionButton:hover {
+  transform: translateY(-1px);
+  border-color: rgba(54, 106, 245, 0.28);
+  box-shadow: 0 18px 32px rgba(17, 17, 17, 0.14);
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.sectionHeader h3 {
+  font-size: 20px;
+  color: #111111;
+}
+
+.sectionHeader span,
+.metaBadge {
+  font-size: 12px;
+  color: rgba(17, 17, 17, 0.54);
+}
+
+.metaBadge {
+  justify-self: start;
+  padding: 9px 13px;
+  border-radius: 999px;
+  background: rgba(147, 170, 249, 0.16);
+  border: 1px solid rgba(54, 106, 245, 0.12);
+  color: #2c4ba8;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+}
+
+.field span {
+  font-size: 12px;
+  color: rgba(17, 17, 17, 0.58);
+}
+
+.fieldWide {
+  grid-column: 1 / -1;
+}
+
+.field input,
+.field select,
+.modelPicker select,
+.inputShell textarea {
+  width: 100%;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 14px;
+  padding: 14px 15px;
+  font-size: 15px;
+  color: #111111;
+  outline: none;
+}
+
+.field input:focus,
+.field select:focus,
+.modelPicker select:focus,
+.inputShell textarea:focus {
+  border-color: rgba(54, 106, 245, 0.42);
+  box-shadow: 0 0 0 4px rgba(147, 170, 249, 0.18);
+}
+
+.summaryGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.summaryGrid div {
+  display: grid;
+  gap: 6px;
+  padding: 14px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #f9fafc 0%, #f2f4f7 100%);
+  border: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.summaryGrid span {
+  font-size: 12px;
+  color: rgba(17, 17, 17, 0.52);
+}
+
+.summaryGrid strong {
+  font-size: 15px;
+  color: #111111;
+}
+
+.chartWrap {
+  overflow: hidden;
+  padding-bottom: 6px;
+  max-width: 100%;
+  touch-action: pan-y;
+}
+
+.chartWrap > * {
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+}
+
+.emptyCard {
+  padding: 18px;
+  color: rgba(17, 17, 17, 0.56);
+  background: rgba(250, 251, 253, 0.92);
+}
+
+.questionButton {
+  padding: 14px 16px;
+  text-align: left;
+  font-size: 14px;
+  line-height: 1.45;
+  border-radius: 18px;
+}
+
+.scriptReady {
+  margin-bottom: 10px;
+  font-size: 12px;
+  color: rgba(54, 106, 245, 0.9);
+}
+
+.fortuneCard {
+  --fortune-accent: #4961ff;
+  --fortune-accent-soft: rgba(73, 97, 255, 0.14);
+  --fortune-accent-glow: rgba(73, 97, 255, 0.18);
+  min-width: 0;
+  width: 100%;
+  padding: 18px;
+  border-radius: 30px;
+  border: 1px solid rgba(214, 218, 226, 0.72);
+  background: linear-gradient(180deg, rgba(230, 233, 239, 0.98), rgba(241, 243, 247, 0.94));
+  box-shadow: none;
+  overflow: hidden;
+}
+
+.fortuneHeader {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.fortuneBadge {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #0f1d4d;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.85),
+    0 10px 22px rgba(15, 23, 42, 0.08);
+}
+
+.fortuneBadge svg {
+  width: 26px;
+  height: 26px;
+}
+
+.fortuneHeaderText {
+  display: grid;
+  gap: 2px;
+}
+
+.fortuneHeaderText h3 {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.1;
+  color: #111111;
+}
+
+.fortuneHeaderText p {
+  margin: 0;
+  color: rgba(17, 17, 17, 0.36);
+  font-size: 12px;
+}
+
+.fortuneChartShell {
+  min-width: 0;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.fortuneChartViewport {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 28px;
+  background: rgba(241, 243, 247, 0.92);
+}
+
+.fortuneScrollArea {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  touch-action: pan-x;
+}
+
+.fortuneScrollArea::-webkit-scrollbar {
+  display: none;
+}
+
+.fortuneScrollContent {
+  display: block;
+  min-width: 100%;
+}
+
+.fortuneChartFrame {
+  height: 212px;
+}
+
+.fortuneChart {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.fortuneGridLine,
+.fortuneGridLineMuted {
+  stroke: rgba(113, 120, 135, 0.26);
+  stroke-width: 1.2;
+  stroke-dasharray: 5 7;
+}
+
+.fortuneGridLineMuted {
+  opacity: 0.45;
+}
+
+.fortuneLineShadow {
+  fill: none;
+  stroke-width: 12;
+  opacity: 0.16;
+  filter: blur(6px);
+}
+
+.fortuneLine {
+  fill: none;
+  stroke: url(#fortune-line-gradient);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.fortuneAgeText {
+  fill: rgba(17, 17, 17, 0.36);
+  font-size: 13px;
+  font-family: "Iowan Old Style", "Baskerville", "Times New Roman", "Songti SC",
+    "STSong", serif;
+}
+
+.fortuneMetricRow {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.fortuneMetricButton {
+  min-height: 96px;
+  padding: 12px 8px 10px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: rgba(227, 227, 231, 0.6);
+  color: rgba(17, 17, 17, 0.38);
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 10px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.fortuneMetricButtonActive {
+  background: linear-gradient(180deg, var(--fortune-button-accent), var(--fortune-button-accent-end));
+  color: #ffffff;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    0 14px 26px var(--fortune-accent-glow);
+}
+
+.fortuneMetricIcon {
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fortuneMetricIcon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.fortuneMetricLabel {
+  font-size: 14px;
+  font-family: "Iowan Old Style", "Baskerville", "Times New Roman", "Songti SC",
+    "STSong", serif;
+}
+
+.callInfo {
+  display: grid;
+  gap: 10px;
+}
+
+.chatMessages {
+  display: grid;
+  gap: 14px;
+  padding-bottom: 168px;
+}
+
+.chatBubble {
+  padding: 18px;
+}
+
+.assistantBubble {
+  background: rgba(255, 255, 255, 0.96);
+}
+
+.userBubble {
+  margin-left: 40px;
+  background: linear-gradient(135deg, rgba(147, 170, 249, 0.14), rgba(54, 106, 245, 0.08));
+  border-color: rgba(54, 106, 245, 0.12);
+}
+
+.userMessageBody {
+  display: grid;
+  gap: 10px;
+}
+
+.chatRole {
+  display: inline-block;
+  margin-bottom: 8px;
+  font-size: 12px;
+  color: rgba(17, 17, 17, 0.48);
+  font-family: "Iowan Old Style", "Baskerville", "Times New Roman", "Songti SC",
+    "STSong", serif;
+}
+
+.userText,
+.reasoning {
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0;
+}
+
+.reasoning {
+  margin-bottom: 10px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(245, 247, 251, 0.98);
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  font-size: 12px;
+}
+
+.markdownBody :where(h1, h2, h3, h4) {
+  margin: 0.55em 0 0.3em;
+  color: #111111;
+}
+
+.markdownBody :where(h5, h6) {
+  margin: 0.48em 0 0.26em;
+  color: #30343c;
+}
+
+.markdownBody h4 {
+  font-size: 1.02rem;
+}
+
+.markdownBody h5 {
+  font-size: 0.94rem;
+}
+
+.markdownBody h6 {
+  font-size: 0.88rem;
+  letter-spacing: 0.02em;
+}
+
+.markdownBody :where(p, ul, ol) {
+  margin: 0.38em 0;
+}
+
+.markdownBody :where(ul, ol) {
+  padding-left: 1.2em;
+}
+
+.attachmentStrip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.attachmentTag {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  font-size: 12px;
+  border-radius: 999px;
+  background: rgba(245, 247, 251, 0.98);
+  color: #2747a2;
+  box-shadow: none;
+}
+
+.inputShell {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  padding: 10px 10px 10px 14px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.85),
+    0 12px 26px rgba(15, 23, 42, 0.06);
+}
+
+.inputShell textarea {
+  resize: none;
+  min-height: 38px;
+  max-height: 96px;
+  padding: 8px 0 6px;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  line-height: 1.45;
+}
+
+.composerActions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.uploadButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 42px;
+  min-height: 42px;
+  border-radius: 999px;
+  padding: 0;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.uploadButton input {
+  display: none;
+}
+
+.modelPicker {
+  display: grid;
+  gap: 8px;
+  font-size: 12px;
+  color: rgba(17, 17, 17, 0.56);
+}
+
+.chatHeaderTitle {
+  font-size: 16px;
+  color: #111111;
+  font-family: "Iowan Old Style", "Baskerville", "Times New Roman", "Songti SC",
+    "STSong", serif;
+}
+
+.iconButton {
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #1f2937;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.historyOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 45;
+  background: rgba(15, 23, 42, 0.2);
+  display: flex;
+}
+
+.historyDrawer {
+  width: min(82%, 320px);
+  height: 100%;
+  padding: 20px 16px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(24px);
+  border-right: 1px solid rgba(15, 23, 42, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.historyHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.historyHeader h3 {
+  font-size: 18px;
+  color: #111111;
+}
+
+.newConversationButton {
+  min-height: 46px;
+  border: none;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #366af5 0%, #5d89f7 100%);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.historyList {
+  display: grid;
+  gap: 10px;
+  overflow-y: auto;
+}
+
+.historyItem {
+  display: grid;
+  gap: 6px;
+  padding: 14px;
+  text-align: left;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 16px;
+  background: rgba(248, 250, 252, 0.92);
+  color: #1f2937;
+  cursor: pointer;
+}
+
+.historyItem span {
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.historyItem small {
+  color: rgba(17, 17, 17, 0.48);
+}
+
+.historyItemActive {
+  background: rgba(147, 170, 249, 0.16);
+  border-color: rgba(54, 106, 245, 0.18);
+}
+
+.floatingQuestionDock {
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  bottom: 101px;
+  z-index: 26;
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 10px 2px 4px;
+  scrollbar-width: none;
+}
+
+.floatingQuestionDock::-webkit-scrollbar {
+  display: none;
+}
+
+.floatingQuestionDock .questionButton {
+  min-width: 220px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(242, 246, 255, 0.96));
+  color: #1e2b52;
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08);
+  border-color: rgba(54, 106, 245, 0.12);
+}
+
+.composer {
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  bottom: 92px;
+  z-index: 28;
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(22px);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 18px 36px rgba(15, 23, 42, 0.1);
+}
+
+.sendButton {
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #366af5 0%, #5d89f7 100%);
+  color: #ffffff;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(54, 106, 245, 0.24);
+}
+
+.errorText,
+.successText {
+  margin-top: 12px;
+  font-size: 13px;
+}
+
+.errorText {
+  color: #b42318;
+}
+
+.successText {
+  color: #366af5;
+}
+
+.tabBar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 14px 28px 18px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.99));
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+  z-index: 30;
+  backdrop-filter: blur(20px);
+}
+
+.tabButton {
+  min-height: 62px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  color: #b4bac4;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.tabButtonActive {
+  background: transparent;
+  color: #111111;
+  box-shadow: none;
+}
+
+.tabIcon {
+  width: 26px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tabIcon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.tabLabel {
+  line-height: 1;
+}
+
+.tabButtonActive .tabIcon,
+.tabButtonActive .tabLabel {
+  color: #111111;
+}
+
+@media (max-width: 720px) {
+  .page {
+    padding: 0;
+    background:
+      radial-gradient(circle at top right, rgba(147, 170, 249, 0.18), transparent 38%),
+      linear-gradient(180deg, #f7f8fa 0%, #eef1f5 100%);
+  }
+
+  .appShell {
+    width: 100%;
+    height: 100dvh;
+    max-height: 100dvh;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+
+  .topBar {
+    padding: 20px 18px 16px;
+  }
+
+  .content {
+    padding: 18px 18px 116px;
+  }
+
+  .contentWithQuestionDock {
+    padding-bottom: 194px;
+  }
+
+  .contentWithComposer {
+    padding-bottom: 226px;
+  }
+
+  .heroCard,
+  .card,
+  .emptyCard,
+  .chatBubble {
+    border-radius: 18px;
+  }
+
+  .fortuneCard {
+    padding: 16px;
+    border-radius: 26px;
+  }
+
+  .fortuneChartFrame {
+    height: 194px;
+  }
+
+  .fortuneChartViewport {
+    border-radius: 24px;
+  }
+
+  .fortuneMetricRow {
+    gap: 8px;
+  }
+
+  .fortuneMetricButton {
+    min-height: 88px;
+    padding: 10px 6px;
+  }
+
+  .fortuneMetricLabel {
+    font-size: 13px;
+  }
+
+  .heroCard,
+  .card {
+    padding: 18px;
+  }
+
+  .homeActionGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .topBarLead {
+    gap: 12px;
+  }
+
+  .userBubble {
+    margin-left: 16px;
+  }
+
+  .floatingQuestionDock,
+  .composer {
+    left: 18px;
+    right: 18px;
+  }
+
+  .tabBar {
+    padding: 14px 18px 18px;
+  }
+}
+
+@media (max-width: 380px) {
+  .fieldWide {
+    grid-column: auto;
+  }
+}

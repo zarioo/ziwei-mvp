@@ -1,0 +1,21 @@
+{
+    "name": "",
+    "gender": "female",
+    "calendarType": "solar",
+    "birthDate": "1984-07-24T12:00:00",
+    "birthTime": {
+        "hour": 14,
+        "minute": 20
+    },
+    "birthPlace": {
+        "address": "中华人民共和国辽宁省锦州市",
+        "latitude": 41.11584,
+        "longitude": 121.13557,
+        "country_code": "CN"
+    },
+    "useTrueSolarTime": true,
+    "useEarlyLateZiHour": false,
+    "dstAdjusted": null,
+    "leapMonthMethod": "splitByDay",
+    "language": "zh"
+}
