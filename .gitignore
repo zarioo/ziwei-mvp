@@ -28,6 +28,8 @@
 .claude/
 .codex/
 .cursorrules
+*.db-shm
+*.db-wal
 
 # debug
 npm-debug.log*
