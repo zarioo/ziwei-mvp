@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import PanShell from "@/components/PanShell";
 import IztrolabeServer from "@/components/IztrolabeServer";
 import { buildHoroscopeSlice, generateLLMPayload } from "@/utils/generateLLMPayload";
+import { serializeHoroscopeText } from "@/utils/serializeHoroscopeText";
 
 import styles from "./page.module.css";
 
@@ -89,6 +90,25 @@ type DayOption = {
   day: number;
 };
 
+type BackendHoroscopeExportRequest = PanelInput & {
+  fileBaseName?: string;
+  allowEmptySelection?: boolean;
+  selected_decades: Array<{
+    startAge: number;
+    endAge: number;
+  }>;
+  selected_years: number[];
+  selected_months: Array<{
+    year: number;
+    month: number;
+  }>;
+  selected_days: Array<{
+    year: number;
+    month: number;
+    day: number;
+  }>;
+};
+
 type SavedChart = {
   id: string;
   createdAt: string;
@@ -159,6 +179,18 @@ function formatTodayMMDD() {
   return `${mm}${dd}`;
 }
 
+function formatNowHHmmss() {
+  const now = new Date();
+  const hh = String(now.getHours()).padStart(2, "0");
+  const mm = String(now.getMinutes()).padStart(2, "0");
+  const ss = String(now.getSeconds()).padStart(2, "0");
+  return `${hh}${mm}${ss}`;
+}
+
+function buildFortuneFileBaseName(name: string) {
+  return `${normalizeNameForFile(name || "user")}${formatTodayMMDD()}-${formatNowHHmmss()}-fortune`;
+}
+
 function getDaysInMonth(year: number, month: number) {
   return new Date(year, month, 0).getDate();
 }
@@ -198,7 +230,12 @@ export default function PanPage() {
   const [pendingMonthKeys, setPendingMonthKeys] = useState<string[]>([]);
   const [pendingDayKeys, setPendingDayKeys] = useState<string[]>([]);
   const [horoscopeJsonLoading, setHoroscopeJsonLoading] = useState(false);
+  const [horoscopeTextLoading, setHoroscopeTextLoading] = useState(false);
+  const [backendHoroscopeJsonLoading, setBackendHoroscopeJsonLoading] = useState(false);
+  const [backendHoroscopeTextLoading, setBackendHoroscopeTextLoading] = useState(false);
   const [aiLaunching, setAiLaunching] = useState(false);
+  const [manualFortuneFileBaseName, setManualFortuneFileBaseName] = useState("");
+  const [backendFortuneFileBaseName, setBackendFortuneFileBaseName] = useState("");
   const hasRestoredStateRef = useRef(false);
 
   const timeIndex = useMemo(() => toTimeIndex(form.birthTime), [form.birthTime]);
@@ -210,6 +247,22 @@ export default function PanPage() {
     const yearNum = Number(yearText);
     return Number.isNaN(yearNum) ? null : yearNum;
   }, [form.birthday]);
+  const exportBusy = horoscopeJsonLoading || horoscopeTextLoading || aiLaunching;
+  const backendExportBusy =
+    backendHoroscopeJsonLoading || backendHoroscopeTextLoading;
+
+  useEffect(() => {
+    setManualFortuneFileBaseName("");
+    setBackendFortuneFileBaseName("");
+  }, [
+    form.name,
+    rawAstrolabe,
+    rawHoroscope,
+    selectedDecadalIds,
+    selectedYears,
+    selectedMonthKeys,
+    selectedDayKeys,
+  ]);
 
   const getAllowedYearsFromDecadals = (decadalIds: string[]) => {
     // 根据大限年龄范围换算出可选流年，确保流年只能在上层范围内选择
@@ -878,185 +931,19 @@ export default function PanPage() {
       return null;
     }
 
-    const allowedYears = getAllowedYearsFromDecadals(selectedDecadalIds);
-    const finalDecadalIds = selectedDecadalIds;
-    const finalYears =
-      allowedYears.length === 0
-        ? []
-        : selectedYears.filter((year) => allowedYears.includes(year));
-    const yearSet = new Set(finalYears);
-    const finalMonthKeys = selectedMonthKeys.filter((key) =>
-      yearSet.has(Number(key.split("-")[0]))
-    );
-    const monthSet = new Set(finalMonthKeys);
-    const finalDayKeys = selectedDayKeys.filter((key) => {
-      const [yearText, monthText] = key.split("-");
-      return monthSet.has(buildMonthKey(Number(yearText), Number(monthText)));
-    });
-
-    if (
-      finalDecadalIds.length === 0 &&
-      finalYears.length === 0 &&
-      finalMonthKeys.length === 0 &&
-      finalDayKeys.length === 0
-    ) {
-      if (!options?.allowEmptySelection) {
-        setSaveMessage("请先选择至少一个大限 / 流年 / 流月 / 流日");
-        return null;
-      }
-    }
-
     setHoroscopeJsonLoading(true);
     try {
-      // 先用当前盘面生成“本命盘”的基础 JSON（运势切片按用户选择追加）
-      const basePayload = generateLLMPayload(rawAstrolabe, rawHoroscope, form, {
-        // 运势 JSON 只保留本命盘，运势切片按用户选择追加
-        includeCurrentTimeSlice: false,
+      const payload = await buildSelectedHoroscopePayload({
+        allowEmptySelection: options?.allowEmptySelection,
       });
-
-      const selectedSlices = {
-        decades: [] as Array<Record<string, any>>,
-        years: [] as Array<Record<string, any>>,
-        months: [] as Array<Record<string, any>>,
-        days: [] as Array<Record<string, any>>,
-      };
-
-      // 大限按起始年龄排序，确保输出顺序稳定
-      const sortedDecadalIds = [...finalDecadalIds].sort((a, b) => {
-        const aStart = Number(a.split("-")[0]);
-        const bStart = Number(b.split("-")[0]);
-        if (Number.isNaN(aStart) || Number.isNaN(bStart)) return 0;
-        return aStart - bStart;
-      });
-      for (const id of sortedDecadalIds) {
-        const option = decadalOptions.find((item) => item.id === id);
-        if (!option) continue;
-        const targetYear =
-          birthYear != null
-            // 大限按周岁计算时，起始年应为 birthYear + startAge
-            ? birthYear + option.startAge
-            : currentYear ?? new Date().getFullYear();
-        const horoscope = await fetchHoroscopeRaw(buildDateForYear(targetYear));
-        if (!horoscope) continue;
-        selectedSlices.decades.push({
-          label: `${option.label} ${option.subLabel}`.trim(),
-          start_age: option.startAge,
-          end_age: option.endAge,
-          target_year: targetYear,
-          slice: buildHoroscopeSlice(rawAstrolabe, horoscope, {
-            includeDecade: true,
-            includeYear: false,
-            includeMonth: false,
-            // 大限切片只保留大限信息，不混入流日
-            includeDay: false,
-          }),
-        });
-      }
-
-      // 先去重再按时间排序，确保输出顺序稳定
-      const uniqueYears = Array.from(new Set(finalYears)).sort((a, b) => a - b);
-      for (const year of uniqueYears) {
-        const isCurrentYear =
-          horoscopeDate && year === horoscopeDate.getFullYear();
-        const horoscope = isCurrentYear
-          ? rawHoroscope
-          : await fetchHoroscopeRaw(buildDateForYear(year));
-        if (!horoscope) continue;
-        selectedSlices.years.push({
-          label: `${year}年`,
-          year,
-          slice: buildHoroscopeSlice(rawAstrolabe, horoscope, {
-            includeDecade: false,
-            includeYear: true,
-            includeMonth: false,
-            // 流年切片只保留流年信息，不混入流日
-            includeDay: false,
-          }),
-        });
-      }
-
-      // 月份按年-月排序，避免按点击顺序输出
-      const uniqueMonths = Array.from(new Set(finalMonthKeys)).sort((a, b) => {
-        const [ay, am] = a.split("-").map(Number);
-        const [by, bm] = b.split("-").map(Number);
-        if (ay !== by) return ay - by;
-        return am - bm;
-      });
-      for (const key of uniqueMonths) {
-        const [yearText, monthText] = key.split("-");
-        const year = Number(yearText);
-        const month = Number(monthText);
-        if (!year || !month) continue;
-        const isCurrentMonth =
-          horoscopeDate &&
-          year === horoscopeDate.getFullYear() &&
-          month === horoscopeDate.getMonth() + 1;
-        const horoscope = isCurrentMonth
-          ? rawHoroscope
-          : await fetchHoroscopeRaw(new Date(year, month - 1, 1));
-        if (!horoscope) continue;
-        selectedSlices.months.push({
-          label: `${year}年${month}月`,
-          year,
-          month,
-          slice: buildHoroscopeSlice(rawAstrolabe, horoscope, {
-            includeDecade: false,
-            includeYear: false,
-            includeMonth: true,
-            includeDay: false,
-          }),
-        });
-      }
-
-      // 流日按年月日排序，方便后续按时间线读取
-      const uniqueDays = Array.from(new Set(finalDayKeys)).sort((a, b) => {
-        const [ay, am, ad] = a.split("-").map(Number);
-        const [by, bm, bd] = b.split("-").map(Number);
-        if (ay !== by) return ay - by;
-        if (am !== bm) return am - bm;
-        return ad - bd;
-      });
-      for (const key of uniqueDays) {
-        const [yearText, monthText, dayText] = key.split("-");
-        const year = Number(yearText);
-        const month = Number(monthText);
-        const day = Number(dayText);
-        if (!year || !month || !day) continue;
-        const isCurrentDay =
-          horoscopeDate &&
-          year === horoscopeDate.getFullYear() &&
-          month === horoscopeDate.getMonth() + 1 &&
-          day === horoscopeDate.getDate();
-        const horoscope = isCurrentDay
-          ? rawHoroscope
-          : await fetchHoroscopeRaw(new Date(year, month - 1, day));
-        if (!horoscope) continue;
-        selectedSlices.days.push({
-          label: `${year}年${month}月${day}日`,
-          year,
-          month,
-          day,
-          slice: buildHoroscopeSlice(rawAstrolabe, horoscope, {
-            includeDecade: false,
-            includeYear: false,
-            includeMonth: false,
-            includeDay: true,
-          }),
-        });
-      }
-
-      const payload = {
-        ...basePayload,
-        // 这里保存“多选出来的运势切片”，用于 LLM 或分析模块使用
-        selected_time_slices: selectedSlices,
-      };
+      if (!payload) return null;
 
       const res = await fetch("/api/llm-json", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...payload,
-          fileBaseName: options?.fileBaseName,
+          fileBaseName: options?.fileBaseName ?? getManualFortuneFileBaseName(),
         }),
       });
 
@@ -1081,8 +968,47 @@ export default function PanPage() {
     }
   };
 
+  const onGenerateHoroscopeText = async () => {
+    setSaveMessage(null);
+    if (!rawAstrolabe || !rawHoroscope) {
+      setSaveMessage("请先生成星盘，再点击生成运势文本");
+      return;
+    }
+
+    setHoroscopeTextLoading(true);
+    try {
+      const payload = await buildSelectedHoroscopePayload();
+      if (!payload) return;
+
+      const content = serializeHoroscopeText(payload);
+      const res = await fetch("/api/llm-text", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          content,
+          fileBaseName: getManualFortuneFileBaseName(),
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        setSaveMessage(data?.error || "保存文本失败");
+        return;
+      }
+
+      setSaveMessage(`运势文本文件已保存：${data.fileName}`);
+    } catch (error) {
+      console.error("生成运势文本失败:", error);
+      setSaveMessage(
+        error instanceof Error ? error.message : "生成文本失败，请稍后重试"
+      );
+    } finally {
+      setHoroscopeTextLoading(false);
+    }
+  };
+
   const onOpenAiChat = async () => {
-    if (horoscopeJsonLoading || aiLaunching) return;
+    if (exportBusy) return;
     if (!rawAstrolabe || !rawHoroscope) {
       setSaveMessage("请先生成星盘，再点击 AI问命");
       return;
@@ -1103,6 +1029,344 @@ export default function PanPage() {
     } finally {
       setAiLaunching(false);
     }
+  };
+
+  const getManualFortuneFileBaseName = () => {
+    if (manualFortuneFileBaseName) {
+      return manualFortuneFileBaseName;
+    }
+    const nextBaseName = buildFortuneFileBaseName(form.name || "user");
+    setManualFortuneFileBaseName(nextBaseName);
+    return nextBaseName;
+  };
+
+  const getBackendFortuneFileBaseName = () => {
+    if (backendFortuneFileBaseName) {
+      return backendFortuneFileBaseName;
+    }
+    const nextBaseName = buildFortuneFileBaseName(form.name || "user");
+    setBackendFortuneFileBaseName(nextBaseName);
+    return nextBaseName;
+  };
+
+  const buildBackendHoroscopeExportRequest = (options?: {
+    allowEmptySelection?: boolean;
+    fileBaseName?: string;
+  }): BackendHoroscopeExportRequest | null => {
+    if (!panelInput) {
+      return null;
+    }
+
+    const allowedYears = getAllowedYearsFromDecadals(selectedDecadalIds);
+    const selectedDecades = [...selectedDecadalIds]
+      .map((id) => decadalOptions.find((item) => item.id === id))
+      .filter((item): item is DecadalOption => Boolean(item))
+      .sort((a, b) => a.startAge - b.startAge)
+      .map((item) => ({
+        startAge: item.startAge,
+        endAge: item.endAge,
+      }));
+
+    const finalYears =
+      allowedYears.length === 0
+        ? []
+        : Array.from(new Set(selectedYears))
+            .filter((year) => allowedYears.includes(year))
+            .sort((a, b) => a - b);
+    const yearSet = new Set(finalYears);
+
+    const finalMonths = Array.from(
+      new Map(
+        selectedMonthKeys
+          .filter((key) => yearSet.has(Number(key.split("-")[0])))
+          .map((key) => {
+            const [yearText, monthText] = key.split("-");
+            const year = Number(yearText);
+            const month = Number(monthText);
+            return [key, { year, month }] as const;
+          })
+          .filter(([, value]) => value.year > 0 && value.month > 0)
+      ).values()
+    ).sort((a, b) => (a.year !== b.year ? a.year - b.year : a.month - b.month));
+    const monthSet = new Set(
+      finalMonths.map((item) => buildMonthKey(item.year, item.month))
+    );
+
+    const finalDays = Array.from(
+      new Map(
+        selectedDayKeys
+          .filter((key) => {
+            const [yearText, monthText] = key.split("-");
+            return monthSet.has(buildMonthKey(Number(yearText), Number(monthText)));
+          })
+          .map((key) => {
+            const [yearText, monthText, dayText] = key.split("-");
+            const year = Number(yearText);
+            const month = Number(monthText);
+            const day = Number(dayText);
+            return [key, { year, month, day }] as const;
+          })
+          .filter(([, value]) => value.year > 0 && value.month > 0 && value.day > 0)
+      ).values()
+    ).sort((a, b) => {
+      if (a.year !== b.year) return a.year - b.year;
+      if (a.month !== b.month) return a.month - b.month;
+      return a.day - b.day;
+    });
+
+    const hasSelection =
+      selectedDecades.length > 0 ||
+      finalYears.length > 0 ||
+      finalMonths.length > 0 ||
+      finalDays.length > 0;
+    if (!hasSelection && !options?.allowEmptySelection) {
+      setSaveMessage("请先选择至少一个大限 / 流年 / 流月 / 流日");
+      return null;
+    }
+
+    return {
+      ...panelInput,
+      fileBaseName: options?.fileBaseName ?? getBackendFortuneFileBaseName(),
+      allowEmptySelection: options?.allowEmptySelection,
+      selected_decades: selectedDecades,
+      selected_years: finalYears,
+      selected_months: finalMonths,
+      selected_days: finalDays,
+    };
+  };
+
+  const onGenerateBackendHoroscopeJson = async () => {
+    setSaveMessage(null);
+    if (!panelInput) {
+      setSaveMessage("请先生成星盘，再点击后端生成运势 JSON");
+      return;
+    }
+
+    setBackendHoroscopeJsonLoading(true);
+    try {
+      const requestBody = buildBackendHoroscopeExportRequest();
+      if (!requestBody) return;
+
+      const res = await fetch("/api/ziwei/export-json", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(requestBody),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setSaveMessage(data?.error || "后端生成 JSON 失败");
+        return;
+      }
+      setSaveMessage(`后端运势 JSON 文件已保存：${data.fileName}`);
+    } catch (error) {
+      console.error("后端生成运势 JSON 失败:", error);
+      setSaveMessage(
+        error instanceof Error ? error.message : "后端生成 JSON 失败，请稍后重试"
+      );
+    } finally {
+      setBackendHoroscopeJsonLoading(false);
+    }
+  };
+
+  const onGenerateBackendHoroscopeText = async () => {
+    setSaveMessage(null);
+    if (!panelInput) {
+      setSaveMessage("请先生成星盘，再点击后端生成运势文本");
+      return;
+    }
+
+    setBackendHoroscopeTextLoading(true);
+    try {
+      const requestBody = buildBackendHoroscopeExportRequest();
+      if (!requestBody) return;
+
+      const res = await fetch("/api/ziwei/export-text", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(requestBody),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setSaveMessage(data?.error || "后端生成文本失败");
+        return;
+      }
+      setSaveMessage(`后端运势文本文件已保存：${data.fileName}`);
+    } catch (error) {
+      console.error("后端生成运势文本失败:", error);
+      setSaveMessage(
+        error instanceof Error ? error.message : "后端生成文本失败，请稍后重试"
+      );
+    } finally {
+      setBackendHoroscopeTextLoading(false);
+    }
+  };
+
+  const buildSelectedHoroscopePayload = async (options?: {
+    allowEmptySelection?: boolean;
+  }) => {
+    if (!rawAstrolabe || !rawHoroscope) {
+      return null;
+    }
+
+    const allowedYears = getAllowedYearsFromDecadals(selectedDecadalIds);
+    const finalDecadalIds = selectedDecadalIds;
+    const finalYears =
+      allowedYears.length === 0
+        ? []
+        : selectedYears.filter((year) => allowedYears.includes(year));
+    const yearSet = new Set(finalYears);
+    const finalMonthKeys = selectedMonthKeys.filter((key) =>
+      yearSet.has(Number(key.split("-")[0]))
+    );
+    const monthSet = new Set(finalMonthKeys);
+    const finalDayKeys = selectedDayKeys.filter((key) => {
+      const [yearText, monthText] = key.split("-");
+      return monthSet.has(buildMonthKey(Number(yearText), Number(monthText)));
+    });
+
+    if (
+      finalDecadalIds.length === 0 &&
+      finalYears.length === 0 &&
+      finalMonthKeys.length === 0 &&
+      finalDayKeys.length === 0 &&
+      !options?.allowEmptySelection
+    ) {
+      setSaveMessage("请先选择至少一个大限 / 流年 / 流月 / 流日");
+      return null;
+    }
+
+    const basePayload = generateLLMPayload(rawAstrolabe, rawHoroscope, form, {
+      includeCurrentTimeSlice: false,
+    });
+
+    const selectedSlices = {
+      decades: [] as Array<Record<string, unknown>>,
+      years: [] as Array<Record<string, unknown>>,
+      months: [] as Array<Record<string, unknown>>,
+      days: [] as Array<Record<string, unknown>>,
+    };
+
+    const sortedDecadalIds = [...finalDecadalIds].sort((a, b) => {
+      const aStart = Number(a.split("-")[0]);
+      const bStart = Number(b.split("-")[0]);
+      if (Number.isNaN(aStart) || Number.isNaN(bStart)) return 0;
+      return aStart - bStart;
+    });
+
+    for (const id of sortedDecadalIds) {
+      const option = decadalOptions.find((item) => item.id === id);
+      if (!option) continue;
+      const targetYear =
+        birthYear != null
+          ? birthYear + option.startAge
+          : currentYear ?? new Date().getFullYear();
+      const horoscope = await fetchHoroscopeRaw(buildDateForYear(targetYear));
+      if (!horoscope) continue;
+      selectedSlices.decades.push({
+        label: `${option.label} ${option.subLabel}`.trim(),
+        start_age: option.startAge,
+        end_age: option.endAge,
+        target_year: targetYear,
+        slice: buildHoroscopeSlice(rawAstrolabe, horoscope, {
+          includeDecade: true,
+          includeYear: false,
+          includeMonth: false,
+          includeDay: false,
+        }),
+      });
+    }
+
+    const uniqueYears = Array.from(new Set(finalYears)).sort((a, b) => a - b);
+    for (const year of uniqueYears) {
+      const isCurrentYear = horoscopeDate && year === horoscopeDate.getFullYear();
+      const horoscope = isCurrentYear
+        ? rawHoroscope
+        : await fetchHoroscopeRaw(buildDateForYear(year));
+      if (!horoscope) continue;
+      selectedSlices.years.push({
+        label: `${year}年`,
+        year,
+        slice: buildHoroscopeSlice(rawAstrolabe, horoscope, {
+          includeDecade: false,
+          includeYear: true,
+          includeMonth: false,
+          includeDay: false,
+        }),
+      });
+    }
+
+    const uniqueMonths = Array.from(new Set(finalMonthKeys)).sort((a, b) => {
+      const [ay, am] = a.split("-").map(Number);
+      const [by, bm] = b.split("-").map(Number);
+      if (ay !== by) return ay - by;
+      return am - bm;
+    });
+    for (const key of uniqueMonths) {
+      const [yearText, monthText] = key.split("-");
+      const year = Number(yearText);
+      const month = Number(monthText);
+      if (!year || !month) continue;
+      const isCurrentMonth =
+        horoscopeDate &&
+        year === horoscopeDate.getFullYear() &&
+        month === horoscopeDate.getMonth() + 1;
+      const horoscope = isCurrentMonth
+        ? rawHoroscope
+        : await fetchHoroscopeRaw(new Date(year, month - 1, 1));
+      if (!horoscope) continue;
+      selectedSlices.months.push({
+        label: `${year}年${month}月`,
+        year,
+        month,
+        slice: buildHoroscopeSlice(rawAstrolabe, horoscope, {
+          includeDecade: false,
+          includeYear: false,
+          includeMonth: true,
+          includeDay: false,
+        }),
+      });
+    }
+
+    const uniqueDays = Array.from(new Set(finalDayKeys)).sort((a, b) => {
+      const [ay, am, ad] = a.split("-").map(Number);
+      const [by, bm, bd] = b.split("-").map(Number);
+      if (ay !== by) return ay - by;
+      if (am !== bm) return am - bm;
+      return ad - bd;
+    });
+    for (const key of uniqueDays) {
+      const [yearText, monthText, dayText] = key.split("-");
+      const year = Number(yearText);
+      const month = Number(monthText);
+      const day = Number(dayText);
+      if (!year || !month || !day) continue;
+      const isCurrentDay =
+        horoscopeDate &&
+        year === horoscopeDate.getFullYear() &&
+        month === horoscopeDate.getMonth() + 1 &&
+        day === horoscopeDate.getDate();
+      const horoscope = isCurrentDay
+        ? rawHoroscope
+        : await fetchHoroscopeRaw(new Date(year, month - 1, day));
+      if (!horoscope) continue;
+      selectedSlices.days.push({
+        label: `${year}年${month}月${day}日`,
+        year,
+        month,
+        day,
+        slice: buildHoroscopeSlice(rawAstrolabe, horoscope, {
+          includeDecade: false,
+          includeYear: false,
+          includeMonth: false,
+          includeDay: true,
+        }),
+      });
+    }
+
+    return {
+      ...basePayload,
+      selected_time_slices: selectedSlices,
+    };
   };
 
   const closePicker = () => setOpenPicker(null);
@@ -1567,21 +1831,47 @@ export default function PanPage() {
                     <button
                       className={styles.button}
                       type="button"
-                      onClick={onGenerateHoroscopeJson}
-                      disabled={horoscopeJsonLoading || aiLaunching || !rawAstrolabe}
+                      onClick={() => {
+                        void onGenerateHoroscopeJson();
+                      }}
+                      disabled={exportBusy || !rawAstrolabe}
                     >
                       {horoscopeJsonLoading ? "生成中..." : "生成运势JSON"}
                     </button>
                     <button
                       className={styles.secondaryButton}
                       type="button"
+                      onClick={onGenerateHoroscopeText}
+                      disabled={exportBusy || !rawAstrolabe}
+                    >
+                      {horoscopeTextLoading ? "生成中..." : "生成运势文本"}
+                    </button>
+                    <button
+                      className={styles.secondaryButton}
+                      type="button"
                       onClick={onOpenAiChat}
-                      disabled={horoscopeJsonLoading || aiLaunching || !rawAstrolabe}
+                      disabled={exportBusy || !rawAstrolabe}
                     >
                       {aiLaunching ? "打开中..." : "AI问命"}
                     </button>
+                    <button
+                      className={styles.secondaryButton}
+                      type="button"
+                      onClick={onGenerateBackendHoroscopeJson}
+                      disabled={backendExportBusy || !panelInput}
+                    >
+                      {backendHoroscopeJsonLoading ? "生成中..." : "后端生成JSON"}
+                    </button>
+                    <button
+                      className={styles.secondaryButton}
+                      type="button"
+                      onClick={onGenerateBackendHoroscopeText}
+                      disabled={backendExportBusy || !panelInput}
+                    >
+                      {backendHoroscopeTextLoading ? "生成中..." : "后端生成文本"}
+                    </button>
                     <p className={styles.note}>
-                    说明：只会生成已选择的大限 / 流年 / 流月 / 流日，各层可按需选择。
+                    说明：前 3 个按钮沿用前端生成，后 2 个按钮用于验证后端生成；只会生成已选择的大限 / 流年 / 流月 / 流日，各层可按需选择。
                     </p>
                   </div>
                 </div>

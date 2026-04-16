@@ -30,6 +30,7 @@
 .cursorrules
 *.db-shm
 *.db-wal
+/data/
 
 # debug
 npm-debug.log*
