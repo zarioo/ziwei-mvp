@@ -1,0 +1,273 @@
+# 星曜 × 宫位适配系数。
+# 主星与辅星共用一张适配表；未列出的组合默认按 1.00 处理。
+
+palace_affinity:
+  zi_wei:
+    life: 1.15
+    siblings: 0.95
+    spouse: 0.96
+    children: 0.95
+    wealth: 1.05
+    health: 0.95
+    travel: 1.02
+    social: 1.05
+    career: 1.1
+    property: 1
+    fortune: 1.08
+    parents: 1
+  tian_fu:
+    life: 1.05
+    siblings: 0.95
+    spouse: 0.98
+    children: 0.96
+    wealth: 1.15
+    health: 0.98
+    travel: 0.95
+    social: 0.96
+    career: 1.02
+    property: 1.12
+    fortune: 1.1
+    parents: 1
+  wu_qu:
+    life: 1.05
+    siblings: 0.95
+    spouse: 0.88
+    children: 0.92
+    wealth: 1.2
+    health: 0.98
+    travel: 0.96
+    social: 0.95
+    career: 1.15
+    property: 1.08
+    fortune: 0.92
+    parents: 0.98
+  tan_lang:
+    life: 1
+    siblings: 0.98
+    spouse: 1.05
+    children: 1
+    wealth: 1.08
+    health: 0.9
+    travel: 1.03
+    social: 1.1
+    career: 1.08
+    property: 0.95
+    fortune: 0.95
+    parents: 0.92
+  po_jun:
+    life: 1.05
+    siblings: 0.95
+    spouse: 0.85
+    children: 0.95
+    wealth: 0.98
+    health: 0.88
+    travel: 1.05
+    social: 0.96
+    career: 1.08
+    property: 0.9
+    fortune: 0.9
+    parents: 0.92
+  qi_sha:
+    life: 1.02
+    siblings: 0.94
+    spouse: 0.82
+    children: 0.92
+    wealth: 1.05
+    health: 0.9
+    travel: 1.05
+    social: 0.94
+    career: 1.08
+    property: 0.92
+    fortune: 0.9
+    parents: 0.92
+  lian_zhen:
+    life: 1
+    siblings: 0.98
+    spouse: 1.05
+    children: 0.98
+    wealth: 0.96
+    health: 0.96
+    travel: 1.05
+    social: 1.02
+    career: 1.02
+    property: 0.98
+    fortune: 0.98
+    parents: 0.95
+  tian_xiang:
+    life: 1.05
+    siblings: 0.98
+    spouse: 1.05
+    children: 0.98
+    wealth: 1
+    health: 1
+    travel: 1.02
+    social: 1.02
+    career: 1.05
+    property: 1
+    fortune: 1.05
+    parents: 1
+  tian_liang:
+    life: 1.02
+    siblings: 0.96
+    spouse: 0.96
+    children: 0.95
+    wealth: 0.9
+    health: 1.2
+    travel: 0.98
+    social: 0.98
+    career: 0.95
+    property: 0.96
+    fortune: 1.12
+    parents: 1.08
+  tian_tong:
+    life: 1
+    siblings: 0.98
+    spouse: 1.08
+    children: 1.08
+    wealth: 0.92
+    health: 1.02
+    travel: 0.95
+    social: 1
+    career: 0.88
+    property: 0.98
+    fortune: 1.1
+    parents: 0.98
+  tai_yin:
+    life: 1
+    siblings: 0.98
+    spouse: 1.08
+    children: 1
+    wealth: 1.12
+    health: 1
+    travel: 0.9
+    social: 0.96
+    career: 0.92
+    property: 1.18
+    fortune: 1.1
+    parents: 1.02
+  tai_yang:
+    life: 1.02
+    siblings: 0.98
+    spouse: 0.95
+    children: 0.96
+    wealth: 0.96
+    health: 0.98
+    travel: 1.05
+    social: 1.02
+    career: 1.12
+    property: 0.92
+    fortune: 0.98
+    parents: 1
+  ju_men:
+    life: 0.95
+    siblings: 1.02
+    spouse: 0.9
+    children: 0.92
+    wealth: 0.95
+    health: 0.95
+    travel: 0.98
+    social: 1.05
+    career: 1.02
+    property: 0.95
+    fortune: 0.92
+    parents: 0.98
+  tian_ji:
+    life: 1.02
+    siblings: 0.98
+    spouse: 0.95
+    children: 0.96
+    wealth: 0.96
+    health: 0.98
+    travel: 1.05
+    social: 1
+    career: 1.08
+    property: 0.98
+    fortune: 1
+    parents: 1.05
+  left_support:
+    life: 1.08
+    siblings: 0.98
+    children: 1
+    wealth: 1
+    health: 0.98
+    travel: 1
+    social: 1.05
+    career: 1.08
+    property: 0.98
+    fortune: 1.02
+    parents: 1
+  right_support:
+    life: 1.08
+    siblings: 0.98
+    children: 1
+    wealth: 1
+    health: 0.98
+    travel: 1
+    social: 1.05
+    career: 1.08
+    property: 0.98
+    fortune: 1.02
+    parents: 1
+  wen_chang:
+    spouse: 0.96
+    children: 0.96
+    wealth: 0.98
+    health: 0.95
+    career: 1.1
+    property: 1.05
+    parents: 1.05
+  wen_qu:
+    siblings: 1.02
+    children: 0.98
+    wealth: 0.98
+    health: 0.95
+    social: 1.02
+    career: 1.05
+    property: 1.02
+    parents: 1.02
+  tian_kui:
+    life: 1.08
+    siblings: 0.98
+    children: 0.98
+    wealth: 1.02
+    travel: 1.02
+    social: 1.05
+    career: 1.08
+    property: 1
+    fortune: 1.02
+    parents: 1.08
+  tian_yue:
+    life: 1.08
+    siblings: 0.98
+    children: 0.98
+    wealth: 1.02
+    travel: 1.02
+    social: 1.05
+    career: 1.08
+    property: 1
+    fortune: 1.02
+    parents: 1.08
+  lu_cun:
+    life: 1.02
+    siblings: 0.96
+    spouse: 0.95
+    children: 0.95
+    wealth: 1.2
+    health: 0.95
+    travel: 0.98
+    social: 0.98
+    career: 1.05
+    property: 1.1
+    fortune: 1.08
+    parents: 0.96
+  tian_ma:
+    siblings: 0.96
+    spouse: 0.92
+    children: 0.95
+    wealth: 1.05
+    health: 0.95
+    travel: 1.15
+    social: 1.05
+    career: 1.08
+    property: 0.95
+    fortune: 0.98

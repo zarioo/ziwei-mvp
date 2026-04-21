@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import PanShell from "@/components/PanShell";
 import IztrolabeServer from "@/components/IztrolabeServer";
+import type { LifeScriptResult } from "@/services/life-script/types";
 import { buildHoroscopeSlice, generateLLMPayload } from "@/utils/generateLLMPayload";
 import { serializeHoroscopeText } from "@/utils/serializeHoroscopeText";
 
@@ -23,6 +24,31 @@ const TIME_INDEX_OPTIONS = [
   { value: 11, label: "亥时 (21:00~22:59)" },
   { value: 12, label: "晚子时 (23:00~23:59)" },
 ] as const;
+
+const LIFE_SCRIPT_DIMENSIONS = [
+  { key: "total_luck", label: "总运", color: "#1f1f1f" },
+  { key: "career", label: "事业", color: "#9f5f10" },
+  { key: "wealth", label: "财富", color: "#0b7a63" },
+  { key: "romance", label: "感情", color: "#b84e6d" },
+  { key: "health", label: "健康", color: "#3367d6" },
+] as const;
+
+type LifeScriptDimensionKey = (typeof LIFE_SCRIPT_DIMENSIONS)[number]["key"];
+
+const PALACE_LABELS: Record<string, string> = {
+  life: "命宫",
+  siblings: "兄弟",
+  spouse: "夫妻",
+  children: "子女",
+  wealth: "财帛",
+  health: "疾厄",
+  travel: "迁移",
+  social: "交友",
+  career: "官禄",
+  property: "田宅",
+  fortune: "福德",
+  parents: "父母",
+};
 
 type FormState = {
   name: string;
@@ -195,6 +221,18 @@ function getDaysInMonth(year: number, month: number) {
   return new Date(year, month, 0).getDate();
 }
 
+function buildChartPath(values: number[], width: number, height: number) {
+  if (values.length === 0) return "";
+  const stepX = values.length > 1 ? width / (values.length - 1) : 0;
+  return values
+    .map((value, index) => {
+      const x = Math.round(index * stepX * 100) / 100;
+      const y = Math.round((height - (value / 100) * height) * 100) / 100;
+      return `${index === 0 ? "M" : "L"} ${x} ${y}`;
+    })
+    .join(" ");
+}
+
 export default function PanPage() {
   const [form, setForm] = useState<FormState>(DEFAULT_FORM);
   const [panelInput, setPanelInput] = useState<PanelInput | null>(null);
@@ -233,6 +271,8 @@ export default function PanPage() {
   const [horoscopeTextLoading, setHoroscopeTextLoading] = useState(false);
   const [backendHoroscopeJsonLoading, setBackendHoroscopeJsonLoading] = useState(false);
   const [backendHoroscopeTextLoading, setBackendHoroscopeTextLoading] = useState(false);
+  const [lifeScriptLoading, setLifeScriptLoading] = useState(false);
+  const [lifeScriptResult, setLifeScriptResult] = useState<LifeScriptResult | null>(null);
   const [aiLaunching, setAiLaunching] = useState(false);
   const [manualFortuneFileBaseName, setManualFortuneFileBaseName] = useState("");
   const [backendFortuneFileBaseName, setBackendFortuneFileBaseName] = useState("");
@@ -249,11 +289,12 @@ export default function PanPage() {
   }, [form.birthday]);
   const exportBusy = horoscopeJsonLoading || horoscopeTextLoading || aiLaunching;
   const backendExportBusy =
-    backendHoroscopeJsonLoading || backendHoroscopeTextLoading;
+    backendHoroscopeJsonLoading || backendHoroscopeTextLoading || lifeScriptLoading;
 
   useEffect(() => {
     setManualFortuneFileBaseName("");
     setBackendFortuneFileBaseName("");
+    setLifeScriptResult(null);
   }, [
     form.name,
     rawAstrolabe,
@@ -1144,7 +1185,9 @@ export default function PanPage() {
 
     setBackendHoroscopeJsonLoading(true);
     try {
-      const requestBody = buildBackendHoroscopeExportRequest();
+      const requestBody = buildBackendHoroscopeExportRequest({
+        allowEmptySelection: true,
+      });
       if (!requestBody) return;
 
       const res = await fetch("/api/ziwei/export-json", {
@@ -1177,7 +1220,9 @@ export default function PanPage() {
 
     setBackendHoroscopeTextLoading(true);
     try {
-      const requestBody = buildBackendHoroscopeExportRequest();
+      const requestBody = buildBackendHoroscopeExportRequest({
+        allowEmptySelection: true,
+      });
       if (!requestBody) return;
 
       const res = await fetch("/api/ziwei/export-text", {
@@ -1198,6 +1243,44 @@ export default function PanPage() {
       );
     } finally {
       setBackendHoroscopeTextLoading(false);
+    }
+  };
+
+  const onGenerateLifeScript = async () => {
+    setSaveMessage(null);
+    setLifeScriptResult(null);
+    if (!panelInput) {
+      setSaveMessage("请先生成星盘，再点击生成人生剧本");
+      return;
+    }
+
+    setLifeScriptLoading(true);
+    try {
+      const res = await fetch("/api/ziwei/life-script", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...panelInput,
+          fileBaseName: getBackendFortuneFileBaseName(),
+          debug: true,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setSaveMessage(data?.error || "生成人生剧本失败");
+        return;
+      }
+      setLifeScriptResult((data?.result as LifeScriptResult | undefined) ?? null);
+      setSaveMessage(
+        `人生剧本已保存：源文件 ${data.sourceFileName}；评分结果 ${data.resultFileName}`
+      );
+    } catch (error) {
+      console.error("生成人生剧本失败:", error);
+      setSaveMessage(
+        error instanceof Error ? error.message : "生成人生剧本失败，请稍后重试"
+      );
+    } finally {
+      setLifeScriptLoading(false);
     }
   };
 
@@ -1870,10 +1953,194 @@ export default function PanPage() {
                     >
                       {backendHoroscopeTextLoading ? "生成中..." : "后端生成文本"}
                     </button>
+                    <button
+                      className={styles.secondaryButton}
+                      type="button"
+                      onClick={onGenerateLifeScript}
+                      disabled={backendExportBusy || !panelInput}
+                    >
+                      {lifeScriptLoading ? "生成中..." : "生成人生剧本"}
+                    </button>
                     <p className={styles.note}>
-                    说明：前 3 个按钮沿用前端生成，后 2 个按钮用于验证后端生成；只会生成已选择的大限 / 流年 / 流月 / 流日，各层可按需选择。
+                    说明：前 3 个按钮沿用前端生成，后 3 个按钮用于验证后端生成；“生成人生剧本”会固定生成完整 9 段大限评分结果。
                     </p>
                   </div>
+                  {lifeScriptResult && (
+                    <div className={styles.lifeScriptPanel}>
+                      <div className={styles.lifeScriptHeader}>
+                        <div>
+                          <h3 className={styles.serif}>人生剧本结果预览</h3>
+                          <p className={styles.note}>
+                            曲线与摘要均来自同一份后端确定性计算结果，便于直接核对图文一致性。
+                          </p>
+                        </div>
+                        <span className={styles.lifeScriptBadge}>
+                          {lifeScriptResult.preview_summary.overall_pattern.type}
+                        </span>
+                      </div>
+
+                      <div className={styles.lifeScriptSummaryGrid}>
+                        <article className={styles.lifeScriptSummaryCard}>
+                          <strong>整体走势</strong>
+                          <p>{lifeScriptResult.preview_summary.overall_pattern.description}</p>
+                        </article>
+                        <article className={styles.lifeScriptSummaryCard}>
+                          <strong>高峰期</strong>
+                          <p>
+                            {lifeScriptResult.preview_summary.peak_periods
+                              .map((item) => `${item.start_age}~${item.end_age}`)
+                              .join("、") || "无"}
+                          </p>
+                        </article>
+                        <article className={styles.lifeScriptSummaryCard}>
+                          <strong>低谷期</strong>
+                          <p>
+                            {lifeScriptResult.preview_summary.low_periods
+                              .map((item) => `${item.start_age}~${item.end_age}`)
+                              .join("、") || "无"}
+                          </p>
+                        </article>
+                        <article className={styles.lifeScriptSummaryCard}>
+                          <strong>当前提示</strong>
+                          <p>{lifeScriptResult.preview_summary.current_period_tip.message}</p>
+                        </article>
+                      </div>
+
+                      <div className={styles.lifeScriptTopDimensions}>
+                        {lifeScriptResult.preview_summary.top_dimensions.map((item) => (
+                          <div key={item.dimension} className={styles.dimensionPill}>
+                            <span>{item.dimension_zh}</span>
+                            <strong>峰值 {item.peak_score}</strong>
+                          </div>
+                        ))}
+                      </div>
+
+                      <div className={styles.lifeScriptChartGrid}>
+                        {LIFE_SCRIPT_DIMENSIONS.map((dimension) => {
+                          const points = lifeScriptResult.scores[
+                            dimension.key as LifeScriptDimensionKey
+                          ];
+                          const values = points.map((item) => item.value);
+                          const path = buildChartPath(values, 320, 120);
+                          const rankings = lifeScriptResult.rankings[
+                            dimension.key as LifeScriptDimensionKey
+                          ];
+                          return (
+                            <article key={dimension.key} className={styles.lifeScriptChartCard}>
+                              <div className={styles.lifeScriptChartHeader}>
+                                <strong>{dimension.label}</strong>
+                                <span className={styles.note}>
+                                  最高排名：#
+                                  {Math.min(...rankings.map((item) => item.rank))}
+                                </span>
+                              </div>
+                              <svg
+                                viewBox="0 0 320 120"
+                                className={styles.lifeScriptChart}
+                                role="img"
+                                aria-label={`${dimension.label}曲线图`}
+                              >
+                                <line x1="0" y1="120" x2="320" y2="120" className={styles.chartAxis} />
+                                <line x1="0" y1="60" x2="320" y2="60" className={styles.chartGuide} />
+                                <line x1="0" y1="0" x2="320" y2="0" className={styles.chartGuide} />
+                                <path
+                                  d={path}
+                                  fill="none"
+                                  stroke={dimension.color}
+                                  strokeWidth="3"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                />
+                                {values.map((value, index) => {
+                                  const x = values.length > 1 ? (320 / (values.length - 1)) * index : 0;
+                                  const y = 120 - (value / 100) * 120;
+                                  return (
+                                    <circle
+                                      key={`${dimension.key}-${index}`}
+                                      cx={x}
+                                      cy={y}
+                                      r="4"
+                                      fill={dimension.color}
+                                    />
+                                  );
+                                })}
+                              </svg>
+                              <div className={styles.lifeScriptAxis}>
+                                {points.map((item) => (
+                                  <span key={`${dimension.key}-${item.decade_index}`}>
+                                    {item.start_age}~{item.end_age}
+                                  </span>
+                                ))}
+                              </div>
+                            </article>
+                          );
+                        })}
+                      </div>
+
+                      <div className={styles.lifeScriptDebugPanel}>
+                        <div className={styles.lifeScriptDebugHeader}>
+                          <strong>逐段解释</strong>
+                          <span className={styles.note}>{lifeScriptResult.debug_trace?.input_snapshot ? "已开启可审计 debug 模式" : "未开启 debug 模式"}</span>
+                        </div>
+                        {(lifeScriptResult.debug_trace
+                          ? [
+                              "先看每个维度的 explanation_summary，快速判断这段分数高低的主因。",
+                              "再看 explanation_steps，核对主宫、辅宫、triad、身宫和 normalize 的加权过程。",
+                              "如果要逐项排查，就展开每座宫位，核对每颗主星、每条四化、每条风险提示的贡献。",
+                            ]
+                          : []
+                        ).map((item) => (
+                          <p key={item} className={styles.note}>
+                            {item}
+                          </p>
+                        ))}
+                        {(lifeScriptResult.debug_trace?.per_decade ?? []).map((decade, decadeIndex) => (
+                          <details key={`${decade.decade_label}-${decadeIndex}`} className={styles.debugDecadeCard}>
+                            <summary>
+                              {decade.decade_label}：查看每个维度为什么会算成现在的分数
+                            </summary>
+                            <div className={styles.debugDimensionGrid}>
+                              {LIFE_SCRIPT_DIMENSIONS.map((dimension) => {
+                                const dimensionDebug =
+                                  decade.dimensions[dimension.key as LifeScriptDimensionKey];
+                                return (
+                                  <article
+                                    key={`${decade.decade_label}-${dimension.key}`}
+                                    className={styles.debugDimensionCard}
+                                  >
+                                    <strong>
+                                      {dimension.label} {dimensionDebug.normalization.clamped_score}分
+                                    </strong>
+                                    <p>{dimensionDebug.explanation_summary}</p>
+                                    {dimensionDebug.explanation_steps.map((step) => (
+                                      <p key={step} className={styles.note}>
+                                        {step}
+                                      </p>
+                                    ))}
+                                    {dimensionDebug.palace_details.map((palace) => (
+                                      <details
+                                        key={`${dimension.key}-${palace.palace_index}-${palace.relation}`}
+                                        className={styles.debugPalaceCard}
+                                      >
+                                        <summary>
+                                          宫位 {PALACE_LABELS[palace.palace_key] || palace.palace_key} · 关系 {palace.relation} · 贡献 {palace.breakdown.total}
+                                        </summary>
+                                        {palace.explanation_lines.map((line) => (
+                                          <p key={line} className={styles.note}>
+                                            {line}
+                                          </p>
+                                        ))}
+                                      </details>
+                                    ))}
+                                  </article>
+                                );
+                              })}
+                            </div>
+                          </details>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             ) : (

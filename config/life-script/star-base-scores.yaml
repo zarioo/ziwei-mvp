@@ -1,0 +1,87 @@
+# 主星 × 维度基础分，按最新 PDF 表维护。
+
+star_base_scores:
+  zi_wei:
+    total_luck: 10
+    career: 10
+    wealth: 6
+    romance: 4
+    health: 4
+  tian_fu:
+    total_luck: 10
+    career: 7
+    wealth: 9
+    romance: 4
+    health: 5
+  wu_qu:
+    total_luck: 7
+    career: 10
+    wealth: 10
+    romance: 2
+    health: 4
+  tan_lang:
+    total_luck: 6
+    career: 8
+    wealth: 8
+    romance: 7
+    health: 1
+  po_jun:
+    total_luck: 5
+    career: 8
+    wealth: 5
+    romance: 1
+    health: 0
+  qi_sha:
+    total_luck: 5
+    career: 8
+    wealth: 7
+    romance: 1
+    health: 0
+  lian_zhen:
+    total_luck: 5
+    career: 7
+    wealth: 4
+    romance: 5
+    health: 2
+  tian_xiang:
+    total_luck: 7
+    career: 7
+    wealth: 5
+    romance: 5
+    health: 4
+  tian_liang:
+    total_luck: 8
+    career: 5
+    wealth: 3
+    romance: 4
+    health: 9
+  tian_tong:
+    total_luck: 7
+    career: 2
+    wealth: 3
+    romance: 8
+    health: 6
+  tai_yin:
+    total_luck: 7
+    career: 4
+    wealth: 8
+    romance: 7
+    health: 5
+  tai_yang:
+    total_luck: 7
+    career: 8
+    wealth: 4
+    romance: 5
+    health: 4
+  ju_men:
+    total_luck: 3
+    career: 6
+    wealth: 4
+    romance: 2
+    health: 2
+  tian_ji:
+    total_luck: 6
+    career: 7
+    wealth: 4
+    romance: 3
+    health: 4

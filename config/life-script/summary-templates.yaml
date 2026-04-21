@@ -1,0 +1,18 @@
+summary_templates:
+  patterns:
+    rising_late: "整体属于先低后高型，前期积累感较强，越到后面越容易打开局面。"
+    high_and_stable: "整体属于先高后稳型，早段起点较好，随后进入较稳定的维持区间。"
+    midlife_peak: "整体属于中年峰值型，中段 decade 容易成为人生最重要的发力窗口。"
+    late_rise: "整体属于晚运抬升型，后段 decade 的资源整合与兑现感更明显。"
+    volatile: "整体属于波动起伏型，高低段差明显，关键在于顺势布局与风险管理。"
+    stable: "整体属于全程平稳型，没有极端峰谷，更适合长期主义式经营。"
+
+  current_period_templates:
+    high: "当前大限处于相对强势区，更适合主动推进、扩大成果与做关键决策。"
+    middle: "当前大限处于中位区，适合稳中求进，把资源配置和节奏感先做扎实。"
+    low: "当前大限处于相对低位区，重点应放在减风险、补短板和保存核心势能。"
+
+  dimension_brief_templates:
+    high: "{dimension_zh}是这张曲线里更突出的优势轴，峰值 decade 值得作为扩张重点。"
+    middle: "{dimension_zh}整体处于中位，靠稳定经营比靠短期冲刺更容易见效。"
+    low: "{dimension_zh}波段偏保守，后续扩写时应强调补课、修复与风险意识。"

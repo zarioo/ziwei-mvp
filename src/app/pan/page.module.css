@@ -530,6 +530,168 @@
  * - 流时：--iztro-color-hourly（默认使用 --iztro-color-text）
  */
 
+.lifeScriptPanel {
+  display: grid;
+  gap: 16px;
+  margin-top: 8px;
+  padding: 16px;
+  border-radius: 14px;
+  background: #fffdfa;
+  border: 1px solid rgba(31, 31, 31, 0.08);
+}
+
+.lifeScriptHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.lifeScriptBadge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 6px 10px;
+  background: #1f1f1f;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.lifeScriptSummaryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.lifeScriptSummaryCard {
+  display: grid;
+  gap: 8px;
+  padding: 14px;
+  border-radius: 12px;
+  background: #f8f6f1;
+  border: 1px solid rgba(31, 31, 31, 0.08);
+}
+
+.lifeScriptSummaryCard p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(31, 31, 31, 0.78);
+}
+
+.lifeScriptTopDimensions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.dimensionPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  background: #f2eee6;
+  border: 1px solid rgba(31, 31, 31, 0.08);
+  font-size: 13px;
+}
+
+.lifeScriptChartGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 14px;
+}
+
+.lifeScriptChartCard {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(31, 31, 31, 0.08);
+  background: #ffffff;
+}
+
+.lifeScriptChartHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+}
+
+.lifeScriptChart {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.chartAxis {
+  stroke: rgba(31, 31, 31, 0.22);
+  stroke-width: 1;
+}
+
+.chartGuide {
+  stroke: rgba(31, 31, 31, 0.12);
+  stroke-width: 1;
+  stroke-dasharray: 4 4;
+}
+
+.lifeScriptAxis {
+  display: grid;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  gap: 4px;
+  font-size: 11px;
+  color: rgba(31, 31, 31, 0.6);
+}
+
+.lifeScriptAxis span {
+  text-align: center;
+}
+
+.lifeScriptDebugPanel {
+  display: grid;
+  gap: 10px;
+}
+
+.lifeScriptDebugHeader {
+  display: grid;
+  gap: 4px;
+}
+
+.debugDecadeCard,
+.debugPalaceCard {
+  border: 1px solid rgba(31, 31, 31, 0.08);
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.debugDecadeCard summary,
+.debugPalaceCard summary {
+  cursor: pointer;
+  padding: 12px 14px;
+  font-weight: 700;
+}
+
+.debugDimensionGrid {
+  display: grid;
+  gap: 12px;
+  padding: 0 12px 12px;
+}
+
+.debugDimensionCard {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 12px;
+  background: #faf8f3;
+}
+
+.debugDimensionCard p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(31, 31, 31, 0.8);
+}
+
 .serif {
   font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong",
     "Times New Roman", serif;
@@ -552,5 +714,13 @@
   .formGrid {
     grid-template-columns: 1fr;
   }
-}
 
+  .lifeScriptHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .lifeScriptAxis {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

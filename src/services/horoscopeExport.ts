@@ -35,7 +35,7 @@ export const HoroscopeExportSchema = ZiweiBaseSchema.extend({
 
 export type HoroscopeExportInput = z.infer<typeof HoroscopeExportSchema>;
 
-type DecadalOption = {
+export type DecadalOption = {
   startAge: number;
   endAge: number;
   stem: string;
@@ -63,7 +63,7 @@ async function ensureJsonToLlmDir() {
   await fs.mkdir(JSON_TO_LLM_DIR, { recursive: true });
 }
 
-function normalizeBaseName(rawName: unknown) {
+export function normalizeBaseName(rawName: unknown) {
   if (typeof rawName !== "string") return "";
   const safe = rawName
     .trim()
@@ -105,7 +105,7 @@ function getDaysInMonth(year: number, month: number) {
   return new Date(year, month, 0).getDate();
 }
 
-function getDecadalOptions(astrolabe: {
+export function getDecadalOptions(astrolabe: {
   palaces?: Array<{
     decadal?: {
       range?: number[];
@@ -157,7 +157,10 @@ function ensureValidSelections(
   }
 }
 
-async function saveJsonPayload(payload: Record<string, unknown>, fileBaseName?: string) {
+export async function saveJsonPayload(
+  payload: Record<string, unknown>,
+  fileBaseName?: string
+) {
   await ensureJsonToLlmDir();
   const normalizedBaseName = normalizeBaseName(fileBaseName);
   const timestamp = new Date().toISOString().replace(/[:.]/g, "-");

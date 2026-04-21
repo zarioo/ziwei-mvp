@@ -1,0 +1,53 @@
+# 辅星基础分。
+# 这些星曜会和煞曜一起进入“辅星模块”，统一按
+# 基础分 × 状态系数 × 宫位适配系数 计算，再做模块上限截顶。
+
+helper_stars:
+  left_support:
+    total_luck: 3
+    career: 4
+    wealth: 2
+    romance: 2
+    health: 1
+  right_support:
+    total_luck: 3
+    career: 4
+    wealth: 2
+    romance: 2
+    health: 1
+  wen_chang:
+    total_luck: 2
+    career: 4
+    wealth: 1
+    romance: 1
+    health: 0
+  wen_qu:
+    total_luck: 2
+    career: 3
+    wealth: 1
+    romance: 2
+    health: 0
+  tian_kui:
+    total_luck: 4
+    career: 4
+    wealth: 2
+    romance: 1
+    health: 1
+  tian_yue:
+    total_luck: 4
+    career: 4
+    wealth: 2
+    romance: 1
+    health: 1
+  lu_cun:
+    total_luck: 4
+    career: 3
+    wealth: 6
+    romance: 1
+    health: 1
+  tian_ma:
+    total_luck: 2
+    career: 3
+    wealth: 3
+    romance: 1
+    health: 0

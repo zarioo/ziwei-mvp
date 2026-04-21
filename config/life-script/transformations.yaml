@@ -1,0 +1,16 @@
+# 四化规则改成两层：
+# 1. 生年四化：读取静态星曜标签中的 [生年禄/权/科/忌]
+# 2. 大限四化：读取 decade.transformations
+# 二者都只要命中当前宫位，就按固定值直接加减，不再乘 relation coefficient。
+
+transformations:
+  natal_scores:
+    lu: 3
+    quan: 2
+    ke: 2
+    ji: -3
+  decade_scores:
+    lu: 6
+    quan: 3
+    ke: 3
+    ji: -6

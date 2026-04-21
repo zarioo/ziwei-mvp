@@ -1,0 +1,37 @@
+malefic_stars:
+  qing_yang:
+    total_luck: -3
+    career: -3
+    wealth: -2
+    romance: -3
+    health: -4
+  tuo_luo:
+    total_luck: -3
+    career: -2
+    wealth: -2
+    romance: -2
+    health: -4
+  huo_xing:
+    total_luck: -2
+    career: -1
+    wealth: -2
+    romance: -3
+    health: -4
+  ling_xing:
+    total_luck: -2
+    career: -2
+    wealth: -2
+    romance: -2
+    health: -3
+  di_kong:
+    total_luck: -3
+    career: -3
+    wealth: -4
+    romance: -1
+    health: -1
+  di_jie:
+    total_luck: -3
+    career: -3
+    wealth: -5
+    romance: -1
+    health: -1

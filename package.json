@@ -6,7 +6,8 @@
     "dev": "next dev --webpack",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "node --import tsx --test src/services/life-script/**/*.test.ts"
   },
   "dependencies": {
     "better-sqlite3": "^11.5.0",
@@ -19,6 +20,7 @@
     "resend": "^3.5.0",
     "socks-proxy-agent": "^8.0.5",
     "undici": "^7.22.0",
+    "yaml": "^2.8.3",
     "zod": "^4.3.6"
   },
   "devDependencies": {

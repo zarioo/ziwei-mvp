@@ -1,0 +1,239 @@
+# 这张表同时承载两类静态修正：
+# 1. 小星/杂曜：来自 mini_stars 或未归入辅星模块的标签
+# 2. 神煞：来自 misc_gods 的十二神/神煞标签
+# 计算时会分开出明细，但共享同一张配置表。
+
+misc_gods:
+  截路:
+    total_luck: -2
+    career: -2
+    wealth: -4
+  天刑:
+    total_luck: -2
+    career: -1
+    romance: -2
+    health: -3
+  天伤:
+    total_luck: -2
+    career: -1
+    romance: -2
+    health: -3
+  破碎:
+    total_luck: -2
+    career: -2
+    wealth: -1
+    romance: -2
+    health: -1
+  旬空:
+    total_luck: -1
+    career: -1
+    wealth: -2
+    romance: -1
+  空亡:
+    total_luck: -1
+    career: -1
+    wealth: -2
+    romance: -1
+  寡宿:
+    total_luck: -1
+    romance: -3
+  孤辰:
+    total_luck: -1
+    romance: -3
+  天哭:
+    total_luck: -1
+    romance: -2
+    health: -1
+  天虚:
+    total_luck: -1
+    career: -1
+    wealth: -1
+    romance: -1
+    health: -1
+  阴煞:
+    total_luck: -1
+    romance: -1
+    health: -1
+  天煞:
+    total_luck: -1
+    romance: -1
+    health: -1
+  月煞:
+    total_luck: -1
+    romance: -2
+  亡神:
+    total_luck: -1
+    career: -1
+    romance: -1
+    health: -1
+  白虎:
+    total_luck: -2
+    health: -3
+  天寿:
+    total_luck: 2
+    health: 2
+  红鸾:
+    total_luck: 1
+    romance: 2
+  恩光:
+    total_luck: 1
+    career: 1
+  天月:
+    romance: 1
+    health: 1
+  八座:
+    total_luck: 1
+    career: 2
+  龙池:
+    total_luck: 1
+    career: 1
+    romance: 1
+  华盖:
+    total_luck: 1
+    career: 1
+    romance: -1
+  天厨:
+    total_luck: 1
+    romance: 1
+    health: 1
+  月德:
+    total_luck: 1
+    romance: 1
+    health: 1
+  天姚:
+    total_luck: 1
+    romance: 2
+  天官:
+    total_luck: 1
+    career: 1
+  天使:
+    health: 1
+  天巫:
+    wealth: 1
+    health: 1
+  蜚廉:
+    total_luck: -1
+    career: -1
+    wealth: -1
+  飞廉:
+    total_luck: -1
+    career: -1
+    wealth: -1
+  天喜:
+    total_luck: 1
+    romance: 2
+  咸池:
+    romance: 1
+  封诰:
+    total_luck: 1
+    career: 1
+  天福:
+    total_luck: 1
+    wealth: 1
+    health: 1
+  天德:
+    total_luck: 1
+    romance: 1
+    health: 1
+  三台:
+    total_luck: 1
+    career: 1
+  凤阁:
+    total_luck: 1
+    career: 1
+    romance: 1
+  年解:
+    total_luck: 1
+    health: 1
+  天贵:
+    total_luck: 1
+    career: 1
+  解神:
+    total_luck: 1
+    health: 1
+  天才:
+    total_luck: 1
+    career: 1
+  台辅:
+    total_luck: 1
+    career: 1
+  天空:
+    total_luck: -1
+    wealth: -1
+  博士:
+    total_luck: 1
+    career: 1
+  丧门:
+    total_luck: -1
+    romance: -1
+    health: -1
+  岁驿:
+    total_luck: 1
+  官府:
+    total_luck: -1
+    career: -1
+  贯索:
+    total_luck: -1
+    wealth: -1
+  息神:
+    total_luck: 1
+    health: 1
+  伏兵:
+    total_luck: -1
+    career: -1
+  官符:
+    total_luck: -1
+    career: -2
+  大耗:
+    total_luck: -2
+    wealth: -3
+  小耗:
+    total_luck: -1
+    wealth: -1
+  劫煞:
+    total_luck: -1
+    career: -1
+    romance: -1
+  病符:
+    total_luck: -1
+    health: -2
+  灾煞:
+    total_luck: -2
+    health: -2
+  喜神:
+    total_luck: 1
+    romance: 1
+    health: 1
+  龙德:
+    total_luck: 2
+    health: 1
+  指背:
+    total_luck: -1
+    career: -1
+    romance: -1
+  奏书:
+    total_luck: 1
+    career: 1
+  将军:
+    total_luck: 1
+    career: 2
+  吊客:
+    total_luck: -1
+    romance: -1
+    health: -1
+  青龙:
+    total_luck: 1
+    career: 1
+    wealth: 1
+  岁建:
+    total_luck: 1
+    career: 1
+  力士:
+    total_luck: 1
+    health: 1
+  晦气:
+    total_luck: -1
+    health: -1
+  攀鞍:
+    total_luck: 1
+    career: 1

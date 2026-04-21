@@ -1,0 +1,103 @@
+# 五大维度权重配置。
+# 每个维度都按“主宫 + 辅宫 + 三方四正 + 身宫修正”组合成维度原始分，
+# 再在维度层叠加风险提示修正。
+
+dimensions:
+  total_luck:
+    main:
+      life: 0.5
+    support:
+      fortune: 0.18
+      travel: 0.12
+    triad_reference: life
+    triad_weight: 0.15
+    body_weight: 0.05
+    module_caps:
+      major_star: 14
+      side_star: 6
+    normalization:
+      min_raw: -8
+      max_raw: 16
+
+  career:
+    main:
+      career: 0.5
+    support:
+      life: 0.1
+      travel: 0.1
+      social: 0.1
+    triad_reference: career
+    triad_weight: 0.15
+    body_weight: 0.05
+    module_caps:
+      major_star: 14
+      side_star: 6
+    normalization:
+      min_raw: -10
+      max_raw: 16
+
+  wealth:
+    main:
+      wealth: 0.5
+    support:
+      career: 0.1
+      fortune: 0.08
+      property: 0.12
+    triad_reference: wealth
+    triad_weight: 0.15
+    body_weight: 0.05
+    module_caps:
+      major_star: 14
+      side_star: 6
+    normalization:
+      min_raw: -10
+      max_raw: 16
+
+  romance:
+    main:
+      spouse: 0.52
+    support:
+      life: 0.1
+      fortune: 0.12
+      social: 0.06
+      children: 0.05
+    triad_reference: spouse
+    triad_weight: 0.1
+    body_weight: 0.05
+    module_caps:
+      major_star: 12
+      side_star: 5
+    normalization:
+      min_raw: -9
+      max_raw: 16
+
+  health:
+    main:
+      health: 0.55
+    support:
+      life: 0.1
+      fortune: 0.1
+      parents: 0.05
+    triad_reference: health
+    triad_weight: 0.15
+    body_weight: 0.05
+    module_caps:
+      major_star: 12
+      side_star: 5
+    normalization:
+      min_raw: -9
+      max_raw: 16
+
+# 静态修正模块固定截在 -5 ~ +5。
+static_adjustment:
+  min: -5
+  max: 5
+
+# 身宫仍沿用现有“相关宫加权细调”的实现，不让身宫盖过主宫。
+body_adjustment:
+  relation_coeff:
+    main: 1.0
+    support: 0.7
+    triad: 0.5
+    weak_related: 0.3
+    none: 0.0
